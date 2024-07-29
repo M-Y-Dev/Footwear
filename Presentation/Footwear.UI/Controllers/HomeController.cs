@@ -12,12 +12,12 @@ namespace Footwear.UI.Controllers
         {
             _logger = logger;
         }
-
+        
         public IActionResult Index()
         {
             return View();
         }
-
+        //test öfg
         public IActionResult Privacy()
         {
             return View();
