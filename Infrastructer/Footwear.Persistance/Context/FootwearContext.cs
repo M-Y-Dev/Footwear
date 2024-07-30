@@ -20,5 +20,7 @@ namespace Footwear.Persistance.Context
         public DbSet<Contact> Contacts { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductDetail> ProductDetails { get; set; }
+        public DbSet<Address> Addresses { get; set; }
+        public DbSet<Comment> Comments { get; set; }
     }
 }
