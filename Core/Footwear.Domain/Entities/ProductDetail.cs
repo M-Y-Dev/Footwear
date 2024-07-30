@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Footwear.Domain.Entities
 {
-    public class AppRole : BaseEntity
+    public class ProductDetail : BaseEntity
     {
         public string ProductInfo { get; set; }
         public int Rating { get; set; }
@@ -18,10 +18,6 @@ namespace Footwear.Domain.Entities
         public string CompanyInformation { get; set; }
         public int ProductId { get; set; }
         public  Product Product { get; set; }
-
-
-
-
     }
 
 }
