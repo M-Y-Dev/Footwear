@@ -18,6 +18,5 @@ namespace Footwear.Domain.Entities
         public int RoleId { get; set; }
         public AppRole AppRole { get; set; }
         public string Password { get; set; }
-        public string ConfirmedPassword { get; set; }
     }
 }
