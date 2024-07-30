@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Footwear.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Footwear.Persistance.Context
@@ -13,7 +14,7 @@ namespace Footwear.Persistance.Context
         {
             
         }
-
-        
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderDetail> OrderDetails { get; set; }
     }
 }
