@@ -1,5 +1,8 @@
 using Footwear.Persistance.Context;
 using Microsoft.EntityFrameworkCore;
+using Footwear.Application.Services;
+using Footwear.Application.Interfaces;
+using Footwear.Persistance.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,6 +10,12 @@ builder.Services.AddDbContext<FootwearContext>(opt =>
 {
     opt.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
+
+builder.Services.AddMediatorService();
+builder.Services.AddAutoMapperService();
+builder.Services.AddFluentValidationServices();
+
+builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
 // Add services to the container.
 

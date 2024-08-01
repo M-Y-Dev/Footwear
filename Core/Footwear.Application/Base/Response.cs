@@ -8,9 +8,19 @@ namespace Footwear.Application.Base
 {
     public class Response<T>
     {
-        public bool IsSuccessfull { get; set; }
-        public string Message { get; set; }
-        public int Code { get; set; }
-        public T Data { get; set; }
+        public bool ResponseIsSuccessfull { get; set; }
+        public string ResponseMessage { get; set; }
+        public int ResponseStatusCode { get; set; }
+        public T? ResponseData { get; set; }
+        public List<string>? ResponseErrors{ get; set; }
+        public Response()
+        {
+            ResponseIsSuccessfull = false;
+            ResponseMessage = string.Empty;
+            ResponseStatusCode = 0;
+            ResponseData = default;
+            ResponseErrors = new List<string>();
+        }
     }
+
 }

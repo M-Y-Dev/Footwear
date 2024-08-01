@@ -6,10 +6,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Footwear.Application.Mediator.Commands.TestCommands
+namespace Footwear.Application.Mediator.Commands.SocialMediaCommands
 {
-    public class TestCommandRequest:IRequest<Response<TestCommandResponse>>
+    public class UpdateSocialMediaCommand:IRequest<Response<object>>
     {
         public int Id { get; set; }
+        public string Url { get; set; }
+        public string Icon { get; set; }
     }
 }
