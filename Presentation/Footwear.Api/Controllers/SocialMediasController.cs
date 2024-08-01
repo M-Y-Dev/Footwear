@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Footwear.Api.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/social-medias")]
     [ApiController]
     public class SocialMediasController : ControllerBase
     {
@@ -23,7 +23,7 @@ namespace Footwear.Api.Controllers
             var result = await _mediator.Send(model);
             return Ok(result);
         }
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteSocialMedia(int id)
         {
             var result = await _mediator.Send(new DeleteSocialMediaCommand(id));
@@ -35,7 +35,7 @@ namespace Footwear.Api.Controllers
             var result = await _mediator.Send(model);
             return Ok(result);
         }
-        [HttpGet("GetSocialMediaById")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> GetSocialMediaById(int id)
         {
             var result = await _mediator.Send(new GetSocialMediaByIdQuery(id));
