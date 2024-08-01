@@ -1,4 +1,5 @@
 ﻿using Footwear.Application.Interfaces;
+using Footwear.Persistance.Context;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,39 @@ namespace Footwear.Persistance.Repositories
 {
     public class Repository<T> : IRepository<T> where T : class
     {
-        //gulsahtest
+        private readonly FootwearContext _context;
+
+        public Repository(FootwearContext context)
+        {
+            _context = context;
+        }
+
+        public async Task CreateAsync(T entity)
+        {
+            _context.Set<T>().Add(entity);
+            await _context.SaveChangesAsync();
+        }
+        public async Task DeleteAsync(int id)
+        {
+            var values = _context.Set<T>().Find(id);
+            _context.Set<T>().Remove(values);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task<List<T>> GetAllAsync()
+        {
+            return await _context.Set<T>().ToListAsync();
+        }
+
+        public async Task<T> GetById(int id)
+        {
+            return await _context.Set<T>().FindAsync(id);
+        }
+
+        public async Task UpdateAsync(T entity)
+        {
+            _context.Set<T>().Update(entity);
+            await _context.SaveChangesAsync();
+        }
     }
 }
