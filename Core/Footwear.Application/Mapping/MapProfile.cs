@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
+using Footwear.Application.Mediator.Commands.CategoryCommands;
 using Footwear.Application.Mediator.Commands.ProductCommands;
 using Footwear.Application.Mediator.Commands.RoleCommands;
 using Footwear.Application.Mediator.Commands.SocialMediaCommands;
 using Footwear.Application.Mediator.Commands.UserCommands;
+using Footwear.Application.Mediator.Results.CategoryResults;
 using Footwear.Application.Mediator.Results.ProductResults;
 using Footwear.Application.Mediator.Results.RoleResults;
 using Footwear.Application.Mediator.Results.SocialMediaResults;
@@ -40,6 +42,12 @@ namespace Footwear.Application.Mapping
             CreateMap<AppUser, UpdateUserCommand>().ReverseMap();
             CreateMap<AppUser, GetUserByIdQueryResult>().ReverseMap();
             CreateMap<AppUser, GetUserQueryResult>().ReverseMap();
+
+            CreateMap<Category, CreateCategoryCommand>().ReverseMap();
+            CreateMap<Category, UpdateCategoryCommand>().ReverseMap();
+            CreateMap<Category, GetCategoryByIdQueryResult>().ReverseMap();
+            CreateMap<Category, GetCategoryQueryResult>().ReverseMap();
+
 
         }
     }
