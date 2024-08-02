@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
+using Footwear.Application.Mediator.Commands.AboutCommands;
 using Footwear.Application.Mediator.Commands.CategoryCommands;
 using Footwear.Application.Mediator.Commands.ProductCommands;
 using Footwear.Application.Mediator.Commands.RoleCommands;
 using Footwear.Application.Mediator.Commands.SocialMediaCommands;
 using Footwear.Application.Mediator.Commands.UserCommands;
+using Footwear.Application.Mediator.Results.AboutResults;
 using Footwear.Application.Mediator.Results.CategoryResults;
 using Footwear.Application.Mediator.Results.ProductResults;
 using Footwear.Application.Mediator.Results.RoleResults;
@@ -47,6 +49,11 @@ namespace Footwear.Application.Mapping
             CreateMap<Category, UpdateCategoryCommand>().ReverseMap();
             CreateMap<Category, GetCategoryByIdQueryResult>().ReverseMap();
             CreateMap<Category, GetCategoryQueryResult>().ReverseMap();
+
+            CreateMap<About, CreateAboutCommand>().ReverseMap();
+            CreateMap<About, UpdateAboutCommand>().ReverseMap();
+            CreateMap<About, GetAboutByIdQueryResult>().ReverseMap();
+            CreateMap<About, GetAboutQueryResult>().ReverseMap();
 
 
         }
