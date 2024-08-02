@@ -16,9 +16,9 @@ namespace Footwear.Application.Mediator.Handlers.CommentHandlers
 {
     public class DeleteCommentCommandHandler : IRequestHandler<DeleteCommentCommand,Response<object>>
     {
-        private readonly IRepository<About> _repository;
+        private readonly IRepository<Comment> _repository;
 
-        public DeleteCommentCommandHandler(IRepository<About> repository)
+        public DeleteCommentCommandHandler(IRepository<Comment> repository)
         {
             _repository = repository;
         }

@@ -3,7 +3,6 @@ using Footwear.Application.Base;
 using Footwear.Application.Interfaces;
 using Footwear.Application.Mediator.Queries.AboutQueries;
 using Footwear.Application.Mediator.Results.AboutResults;
-using Footwear.Application.Mediator.Results.CategoryResults;
 using Footwear.Domain.Entities;
 using MediatR;
 using System;
@@ -17,10 +16,10 @@ namespace Footwear.Application.Mediator.Handlers.AboutHandlers
 {
     public class GetAboutQueryHandler : IRequestHandler<GetAboutQuery,Response<List<GetAboutQueryResult>>>
     {
-        private readonly IRepository<Category> _repository;
+        private readonly IRepository<About> _repository;
         private readonly IMapper _mapper;
 
-        public GetAboutQueryHandler(IRepository<Category> repository, IMapper mapper)
+        public GetAboutQueryHandler(IRepository<About> repository, IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;

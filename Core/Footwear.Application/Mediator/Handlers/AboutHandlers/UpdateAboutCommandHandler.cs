@@ -17,10 +17,10 @@ namespace Footwear.Application.Mediator.Handlers.AboutHandlers
 {
     public class UpdateAboutCommandHandler : IRequestHandler<UpdateAboutCommand, Response<object>>
     {
-        private readonly IRepository<Category> _repository;
+        private readonly IRepository<About> _repository;
         private readonly IMapper _mapper;
 
-        public UpdateAboutCommandHandler(IRepository<Category> repository, IMapper mapper)
+        public UpdateAboutCommandHandler(IRepository<About> repository, IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;

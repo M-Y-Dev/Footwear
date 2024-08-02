@@ -17,10 +17,10 @@ namespace Footwear.Application.Mediator.Handlers.CommentHandlers
 {
     public class UpdateCommentCommandHandler : IRequestHandler<UpdateCommentCommand, Response<object>>
     {
-        private readonly IRepository<Category> _repository;
+        private readonly IRepository<Comment> _repository;
         private readonly IMapper _mapper;
 
-        public UpdateCommentCommandHandler(IRepository<Category> repository, IMapper mapper)
+        public UpdateCommentCommandHandler(IRepository<Comment> repository, IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;

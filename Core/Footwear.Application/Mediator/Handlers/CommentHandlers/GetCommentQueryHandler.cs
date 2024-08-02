@@ -2,7 +2,6 @@
 using Footwear.Application.Base;
 using Footwear.Application.Interfaces;
 using Footwear.Application.Mediator.Queries.CommentQueries;
-using Footwear.Application.Mediator.Results.AboutResults;
 using Footwear.Application.Mediator.Results.CommentResults;
 using Footwear.Domain.Entities;
 using MediatR;
@@ -17,10 +16,10 @@ namespace Footwear.Application.Mediator.Handlers.CommentHandlers
 {
     public class GetCommentQueryHandler : IRequestHandler<GetCommentQuery, Response<List<GetCommentQueryResult>>>
     {
-        private readonly IRepository<Category> _repository;
+        private readonly IRepository<Comment> _repository;
         private readonly IMapper _mapper;
 
-        public GetCommentQueryHandler(IRepository<Category> repository, IMapper mapper)
+        public GetCommentQueryHandler(IRepository<Comment> repository, IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;

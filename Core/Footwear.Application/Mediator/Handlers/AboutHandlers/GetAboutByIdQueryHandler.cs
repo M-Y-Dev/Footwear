@@ -4,7 +4,6 @@ using Footwear.Application.Base;
 using Footwear.Application.Interfaces;
 using Footwear.Application.Mediator.Queries.AboutQueries;
 using Footwear.Application.Mediator.Results.AboutResults;
-using Footwear.Application.Mediator.Results.CategoryResults;
 using Footwear.Application.Validator.AboutValidator;
 using Footwear.Domain.Entities;
 using MediatR;

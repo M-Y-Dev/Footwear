@@ -3,7 +3,6 @@ using FluentValidation.Results;
 using Footwear.Application.Base;
 using Footwear.Application.Interfaces;
 using Footwear.Application.Mediator.Queries.CommentQueries;
-using Footwear.Application.Mediator.Results.AboutResults;
 using Footwear.Application.Mediator.Results.CommentResults;
 using Footwear.Application.Validator.CommentValidator;
 using Footwear.Domain.Entities;
@@ -19,10 +18,10 @@ namespace Footwear.Application.Mediator.Handlers.CommentHandlers
 {
     public class GetCommentByIdQueryHandler : IRequestHandler<GetCommentByIdQuery, Response<GetCommentByIdQueryResult>>
     {
-        private readonly IRepository<About> _repository;
+        private readonly IRepository<Comment> _repository;
         private readonly IMapper _mapper;
 
-        public GetCommentByIdQueryHandler(IRepository<About> repository, IMapper mapper)
+        public GetCommentByIdQueryHandler(IRepository<Comment> repository, IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;
