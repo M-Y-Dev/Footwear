@@ -2,6 +2,7 @@
 using Footwear.Application.Mediator.Commands.AboutCommands;
 using Footwear.Application.Mediator.Commands.CategoryCommands;
 using Footwear.Application.Mediator.Commands.CommentCommands;
+using Footwear.Application.Mediator.Commands.ContactCommands;
 using Footwear.Application.Mediator.Commands.ProductCommands;
 using Footwear.Application.Mediator.Commands.RoleCommands;
 using Footwear.Application.Mediator.Commands.SocialMediaCommands;
@@ -9,6 +10,7 @@ using Footwear.Application.Mediator.Commands.UserCommands;
 using Footwear.Application.Mediator.Results.AboutResults;
 using Footwear.Application.Mediator.Results.CategoryResults;
 using Footwear.Application.Mediator.Results.CommentResults;
+using Footwear.Application.Mediator.Results.ContactResults;
 using Footwear.Application.Mediator.Results.ProductResults;
 using Footwear.Application.Mediator.Results.RoleResults;
 using Footwear.Application.Mediator.Results.SocialMediaResults;
@@ -62,6 +64,12 @@ namespace Footwear.Application.Mapping
             CreateMap<Comment, UpdateCommentCommand>().ReverseMap();
             CreateMap<Comment, GetCommentByIdQueryResult>().ReverseMap();
             CreateMap<Comment, GetCommentQueryResult>().ReverseMap();
+            
+            CreateMap<Contact,CreateContactCommand>().ReverseMap();
+            CreateMap<Contact, UpdateContactCommand>().ReverseMap();
+            CreateMap<Contact,GetContactByIdQueryResult>().ReverseMap();
+            CreateMap<Contact,GetContactQueryResult>().ReverseMap();
+            
 
 
         }
