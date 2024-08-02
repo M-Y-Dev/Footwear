@@ -34,8 +34,9 @@ namespace Footwear.Application.Mediator.Handlers.ProductHandlers
                 CategoryName = x.Category.CategoryName,
                 Price = x.Price,
                 ProductImageUrl = x.ProductImageUrl,
-                 ProductName = x.ProductName,
-                 ProductStock = x.ProductStock
+                ProductName = x.ProductName,
+                ProductStock = x.ProductStock,
+                Id = x.Id
                 
             }).ToList();
 
