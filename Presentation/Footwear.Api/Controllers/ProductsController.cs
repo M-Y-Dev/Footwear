@@ -48,5 +48,13 @@ namespace Footwear.Api.Controllers
             return Ok(result);
         }
 
+        [HttpGet("GetProductWithCategory")]
+
+        public async Task<IActionResult> GetProductWithCategory()
+        {
+            var result = await _mediator.Send(new GetProductWithCategoryQuery());
+            return Ok(result);
+        }
+
     }
 }

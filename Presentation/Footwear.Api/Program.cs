@@ -16,6 +16,8 @@ builder.Services.AddAutoMapperService();
 builder.Services.AddFluentValidationServices();
 
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+builder.Services.AddScoped<IProductRespository, ProductRespository>();
+
 
 // Add services to the container.
 
