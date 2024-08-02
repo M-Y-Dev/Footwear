@@ -2,10 +2,8 @@
 using FluentValidation.Results;
 using Footwear.Application.Base;
 using Footwear.Application.Interfaces;
-using Footwear.Application.Mediator.Queries.AboutQueries;
-using Footwear.Application.Mediator.Results.AboutResults;
-using Footwear.Application.Mediator.Results.CategoryResults;
-using Footwear.Application.Validator.AboutValidator;
+using Footwear.Application.Mediator.Commands.CommentCommands;
+using Footwear.Application.Validator.CommentValidator;
 using Footwear.Domain.Entities;
 using MediatR;
 using System;
@@ -15,54 +13,57 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Footwear.Application.Mediator.Handlers.AboutHandlers
+namespace Footwear.Application.Mediator.Handlers.CommentHandlers
 {
-    public class GetAboutByIdQueryResultHandler : IRequestHandler<GetAboutByIdQuery, Response<GetAboutByIdQueryResult>>
+    public class UpdateCommentCommandHandler : IRequestHandler<UpdateCommentCommand, Response<object>>
     {
-        private readonly IRepository<About> _repository;
+        private readonly IRepository<Category> _repository;
         private readonly IMapper _mapper;
 
-        public GetAboutByIdQueryResultHandler(IRepository<About> repository, IMapper mapper)
+        public UpdateCommentCommandHandler(IRepository<Category> repository, IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;
         }
 
-        public async Task<Response<GetAboutByIdQueryResult>> Handle(GetAboutByIdQuery request, CancellationToken cancellationToken)
+        public async Task<Response<object>> Handle(UpdateCommentCommand request, CancellationToken cancellationToken)
         {
-            GetAboutByIdQueryValidator validationRules = new GetAboutByIdQueryValidator();
+            UpdateCommentCommandValidator validationRules = new UpdateCommentCommandValidator();
             ValidationResult validation = validationRules.Validate(request);
             if (!validation.IsValid)
             {
-                var response = new Response<GetAboutByIdQueryResult>();
+                var response = new Response<object>();
                 foreach (var item in validation.Errors)
                 {
                     response.ResponseErrors.Add(item.ErrorMessage.ToString());
                 }
 
                 response.ResponseStatusCode = 400;
-                response.ResponseData = new GetAboutByIdQueryResult();
+                response.ResponseData = null;
                 response.ResponseIsSuccessfull = false;
-                response.ResponseMessage = "Kayıt getirilirken sorun yaşandı.";
+                response.ResponseMessage = "Kayıt güncellenirken sorun yaşandı.";
                 return response;
             }
             var value = await _repository.GetById(request.Id);
-
             if (value is null)
-                return new Response<GetAboutByIdQueryResult>
+                return new Response<object>
                 {
                     ResponseStatusCode = (int)HttpStatusCode.NotFound,
                     ResponseData = null,
                     ResponseIsSuccessfull = false,
-                    ResponseMessage = "Kayıt bulunamadı"
+                    ResponseMessage = "Aranılan kayıt bulunamadı"
                 };
-            return new Response<GetAboutByIdQueryResult>
+            _mapper.Map(request, value);
+            await _repository.UpdateAsync(value);
+
+            return new Response<object>
             {
                 ResponseStatusCode = (int)HttpStatusCode.OK,
-                ResponseData = _mapper.Map<GetAboutByIdQueryResult>(value),
+                ResponseData = null,
                 ResponseIsSuccessfull = true,
-                ResponseMessage = "Kayıt başarıyla getirildi"
+                ResponseMessage = "Kayıt güncellendi"
             };
         }
+
     }
 }

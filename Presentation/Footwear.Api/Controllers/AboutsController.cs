@@ -17,7 +17,7 @@ namespace Footwear.Api.Controllers
             _mediator = mediator;
         }
         [HttpPost]
-        public async Task<IActionResult> CreatetAbout(CreateAboutCommand model)
+        public async Task<IActionResult> CreateAbout(CreateAboutCommand model)
         {
             var result = await _mediator.Send(model);
             return Ok(result);
