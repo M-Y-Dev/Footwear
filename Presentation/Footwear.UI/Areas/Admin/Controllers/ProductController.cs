@@ -17,7 +17,7 @@ namespace Footwear.UI.Areas.Admin.Controllers
         public async Task<IActionResult> ProductList()
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("https://localhost:7275/api/products");
+            var responseMessage = await client.GetAsync("https://localhost:7275/api/products/GetProductWithCategory");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
