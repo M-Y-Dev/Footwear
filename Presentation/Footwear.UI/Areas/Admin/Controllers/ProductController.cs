@@ -18,13 +18,14 @@ namespace Footwear.UI.Areas.Admin.Controllers
 
 
         public async Task<IActionResult> ProductList(int page = 1,int pageSize=5)
+        
         {
             var client = _httpClientFactory.CreateClient();
             var responseMessage = await client.GetAsync("https://localhost:7275/api/products/GetProductWithCategory");
-            if (responseMessage.IsSuccessStatusCode)
+            var jsonData = await responseMessage.Content.ReadAsStringAsync();
+            var jsonObject = JsonConvert.DeserializeObject<dynamic>(jsonData);
+            if (jsonObject.responseIsSuccessfull)
             {
-                var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var jsonObject = JsonConvert.DeserializeObject<dynamic>(jsonData);
                 var result = jsonObject.responseData;
                 var values = JsonConvert.DeserializeObject<List<ResultProductDto>>(result.ToString()).ToPagedList(page,pageSize);
                 return View(values);

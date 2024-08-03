@@ -4,6 +4,7 @@ using Footwear.Persistance.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Footwear.Persistance.Migrations
 {
     [DbContext(typeof(FootwearContext))]
-    partial class FootwearContextModelSnapshot : ModelSnapshot
+    [Migration("20240803173549_appuser_modelcreating")]
+    partial class appuser_modelcreating
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -107,7 +109,7 @@ namespace Footwear.Persistance.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AppRoles");
+                    b.ToTable("AppRole");
                 });
 
             modelBuilder.Entity("Footwear.Domain.Entities.AppUser", b =>
@@ -156,7 +158,7 @@ namespace Footwear.Persistance.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("AppUsers");
+                    b.ToTable("AppUser");
                 });
 
             modelBuilder.Entity("Footwear.Domain.Entities.Basket", b =>
