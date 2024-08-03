@@ -24,8 +24,10 @@ namespace Footwear.UI.Areas.Admin.Controllers
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<List<ResultProductDto>>(jsonData.data);
-                return View(values.ToPagedList(page, pageSize));
+                var jsonObject = JsonConvert.DeserializeObject<dynamic>(jsonData);
+                var result = jsonObject.responseData;
+                var values = JsonConvert.DeserializeObject<List<ResultProductDto>>(result.ToString()).ToPagedList(page,pageSize);
+                return View(values);
             }
             return View();
         }
