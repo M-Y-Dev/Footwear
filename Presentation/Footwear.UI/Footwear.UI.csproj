@@ -938,6 +938,9 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.16" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="X.PagedList" Version="10.0.3" />
+    <PackageReference Include="X.Web.PagedList" Version="10.1.2" />
   </ItemGroup>
 
   <ItemGroup>

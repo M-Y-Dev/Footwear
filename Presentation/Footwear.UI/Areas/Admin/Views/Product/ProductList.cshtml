@@ -1,4 +1,8 @@
-﻿@model List<ResultProductDto>
+﻿@using X.PagedList;
+@using X.Web.PagedList;
+
+
+@model IPagedList<ResultProductDto>
 @{
     ViewData["Title"] = "ProductList";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
@@ -49,7 +53,7 @@
                                     @item.Price
                                 </td>
                                 <td>
-                                    @item.Category.CategoryName
+                                    @item.CategoryName
 
                                 </td>
                                 <td><a href="/Product/DeleteProduct/@item.Id" class="btn btn-warning">Sil</a></td>
@@ -58,11 +62,25 @@
                         }
                     </tbody>
                 </table>
-
             </div>
         </div>
         <br />
         <td><a href="/Product/CreateProduct/" class="btn btn-primary">Yeni Ürün Girişi</a></td>
+
+
+        <div class="col text-center">
+            <div class="block-27">
+                <br />
+                @Html.PagedListPager((IPagedList)Model, page => Url.Action("ProductList", new { page }), new X.Web.PagedList.PagedListRenderOptions
+           {
+               ContainerDivClasses = new[] { "navigation" },
+               LiElementClasses = new[] { "page-item" },
+               PageClasses = new[] { "page-link" },
+           })
+            </div>
+        </div>
     </div>
 </div>
+</div>
+
 

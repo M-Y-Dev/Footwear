@@ -16,7 +16,7 @@ using System.Threading.Tasks;
 
 namespace Footwear.Application.Mediator.Handlers.ContactHandlers
 {
-    public class GetContactByIdQueryHandler: IRequestHandler<GetContactByIdQuery, Response<GetContactByIdQueryResult>>
+    public class GetContactByIdQueryHandler : IRequestHandler<GetContactByIdQuery, Response<GetContactByIdQueryResult>>
     {
         private readonly IRepository<Contact> _repository;
         private readonly IMapper _mapper;
@@ -27,7 +27,7 @@ namespace Footwear.Application.Mediator.Handlers.ContactHandlers
             _mapper = mapper;
         }
 
-       
+
         public async Task<Response<GetContactByIdQueryResult>> Handle(GetContactByIdQuery request, CancellationToken cancellationToken)
         {
             GetContactByIdQueryValidator validationRules = new GetContactByIdQueryValidator();
@@ -46,8 +46,9 @@ namespace Footwear.Application.Mediator.Handlers.ContactHandlers
                 response.ResponseMessage = "Kayıt getirilirken sorun yaşandı.";
                 return response;
             }
+
             var value = await _repository.GetById(request.Id);
-            if(value is null)
+            if (value is null)
             {
                 return new Response<GetContactByIdQueryResult>
                 {
@@ -55,16 +56,18 @@ namespace Footwear.Application.Mediator.Handlers.ContactHandlers
                     ResponseData = null,
                     ResponseIsSuccessfull = false,
                     ResponseMessage = "Kayıt bulunamadı"
-                });
+                };
             }
+
             return new Response<GetContactByIdQueryResult>
             {
                 ResponseStatusCode = (int)HttpStatusCode.OK,
                 ResponseData = _mapper.Map<GetContactByIdQueryResult>(value),
                 ResponseIsSuccessfull = true,
                 ResponseMessage = "Kayıt başarıyla getirildi"
-            });
-       
+            };
+
         }
     }
 }
+

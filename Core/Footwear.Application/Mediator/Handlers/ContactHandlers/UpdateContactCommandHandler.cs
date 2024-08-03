@@ -52,7 +52,7 @@ namespace Footwear.Application.Mediator.Handlers.ContactHandlers
                     ResponseData = null,
                     ResponseIsSuccessfull = false,
                     ResponseMessage = "Kayıt bulunamadı"
-                });
+                };
             _mapper.Map(request,value);
             await _repository.UpdateAsync(value);
             return new Response<object>

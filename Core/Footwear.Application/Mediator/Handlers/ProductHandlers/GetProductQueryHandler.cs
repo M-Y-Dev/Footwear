@@ -14,12 +14,12 @@ using System.Threading.Tasks;
 
 namespace Footwear.Application.Mediator.Handlers.ProductHandlers
 {
-    public class GetProductQueryResultHandler : IRequestHandler<GetProductQuery, Response<List<GetProductQueryResult>>>
+    public class GetProductQueryHandler : IRequestHandler<GetProductQuery, Response<List<GetProductQueryResult>>>
     {
         private readonly IRepository<Product> _repository;
         private readonly IMapper _mapper;
 
-        public GetProductQueryResultHandler(IRepository<Product> repository, IMapper mapper)
+        public GetProductQueryHandler(IRepository<Product> repository, IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;

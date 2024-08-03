@@ -2,9 +2,9 @@
 using FluentValidation.Results;
 using Footwear.Application.Base;
 using Footwear.Application.Interfaces;
-using Footwear.Application.Mediator.Queries.ProductDetailQueries;
-using Footwear.Application.Mediator.Results.ProductDetailsResults;
-using Footwear.Application.Validator.ProductDetailValidator;
+using Footwear.Application.Mediator.Queries.ProductQueries;
+using Footwear.Application.Mediator.Results.ProductResults;
+using Footwear.Application.Validator.ProductValidator;
 using Footwear.Domain.Entities;
 using MediatR;
 using System;
@@ -14,33 +14,32 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Footwear.Application.Mediator.Handlers.ProductDetailHandlers
+namespace Footwear.Application.Mediator.Handlers.ProductHandlers
 {
-    public class GetProductDetailByIdQueryResultHandler : IRequestHandler<GetProductDetailByIdQuery, Response<GetProductDetailByIdQueryResult>>
+    public class GetProductByIdQueryHandler : IRequestHandler<GetProductByIdQuery, Response<GetProductByIdQueryResult>>
     {
-        private readonly IRepository<ProductDetail> _repository;
+        private readonly IRepository<Product> _repository;
         private readonly IMapper _mapper;
 
-        public GetProductDetailByIdQueryResultHandler(IRepository<ProductDetail> repository, IMapper mapper)
+        public GetProductByIdQueryHandler(IRepository<Product> repository, IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;
         }
-
-        public async Task<Response<GetProductDetailByIdQueryResult>> Handle(GetProductDetailByIdQuery request, CancellationToken cancellationToken)
+        public async Task<Response<GetProductByIdQueryResult>> Handle(GetProductByIdQuery request, CancellationToken cancellationToken)
         {
-            GetProductDetailByIdQueryValidator validationRules = new GetProductDetailByIdQueryValidator();
+            GetProductByIdQueryValidator validationRules = new GetProductByIdQueryValidator();
             ValidationResult validation = validationRules.Validate(request);
             if (!validation.IsValid)
             {
-                var response = new Response<GetProductDetailByIdQueryResult>();
+                var response = new Response<GetProductByIdQueryResult>();
                 foreach (var item in validation.Errors)
                 {
                     response.ResponseErrors.Add(item.ErrorMessage.ToString());
                 }
 
                 response.ResponseStatusCode = 400;
-                response.ResponseData = new GetProductDetailByIdQueryResult();
+                response.ResponseData = new GetProductByIdQueryResult();
                 response.ResponseIsSuccessfull = false;
                 response.ResponseMessage = "Kayıt getirilirken sorun yaşandı.";
                 return response;
@@ -49,21 +48,21 @@ namespace Footwear.Application.Mediator.Handlers.ProductDetailHandlers
             var value = await _repository.GetById(request.Id);
 
             if (value is null)
-                return new Response<GetProductDetailByIdQueryResult>
+                return new Response<GetProductByIdQueryResult>
                 {
                     ResponseStatusCode = (int)HttpStatusCode.NotFound,
                     ResponseData = null,
                     ResponseIsSuccessfull = false,
                     ResponseMessage = "Kayıt bulunamadı"
                 };
-            return new Response<GetProductDetailByIdQueryResult>
+            return new Response<GetProductByIdQueryResult>
             {
                 ResponseStatusCode = (int)HttpStatusCode.OK,
-                ResponseData = _mapper.Map<GetProductDetailByIdQueryResult>(value),
+                ResponseData = _mapper.Map<GetProductByIdQueryResult>(value),
                 ResponseIsSuccessfull = true,
                 ResponseMessage = "Kayıt başarıyla getirildi"
             };
-
+        
         }
     }
 }
