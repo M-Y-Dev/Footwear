@@ -1,4 +1,5 @@
-﻿using Footwear.UI.Areas.Admin.Dtos;
+﻿using Footwear.Domain.Entities;
+using Footwear.UI.Areas.Admin.Dtos;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using X.PagedList.Extensions;
@@ -23,7 +24,7 @@ namespace Footwear.UI.Areas.Admin.Controllers
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<List<ResultProductDto>>(jsonData);
+                var values = JsonConvert.DeserializeObject<List<ResultProductDto>>(jsonData.data);
                 return View(values.ToPagedList(page, pageSize));
             }
             return View();
