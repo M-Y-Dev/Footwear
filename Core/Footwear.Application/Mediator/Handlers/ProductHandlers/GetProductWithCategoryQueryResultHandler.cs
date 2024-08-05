@@ -29,30 +29,19 @@ namespace Footwear.Application.Mediator.Handlers.ProductHandlers
         public async Task<Response<List<GetProductWithCategoryQueryResult>>> Handle(GetProductWithCategoryQuery request, CancellationToken cancellationToken)
         {
             var values = await _repository.GetProductListWithCategory();
-            var list = values.Select(x => new GetProductWithCategoryQueryResult
-            {
-                CategoryID = x.CategoryID,
-                CategoryName = x.Category.CategoryName,
-                Price = x.Price,
-                ProductImageUrl = x.ProductImageUrl,
-                ProductName = x.ProductName,
-                ProductStock = x.ProductStock,
-                Id = x.Id
 
-            }).ToList();
-
-            if (list.Any())
+            if (values.Any())
                 return new Response<List<GetProductWithCategoryQueryResult>>
                 {
                     ResponseIsSuccessfull = true,
-                    ResponseData = _mapper.Map<List<GetProductWithCategoryQueryResult>>(list),
+                    ResponseData = _mapper.Map<List<GetProductWithCategoryQueryResult>>(values),
                     ResponseMessage = "Kayıtlar başarıyla getirildi",
                     ResponseStatusCode = (int)HttpStatusCode.OK,
                 };
             return new Response<List<GetProductWithCategoryQueryResult>>
             {
                 ResponseIsSuccessfull = false,
-                ResponseData = _mapper.Map<List<GetProductWithCategoryQueryResult>>(list),
+                ResponseData = _mapper.Map<List<GetProductWithCategoryQueryResult>>(values),
                 ResponseMessage = "Listelenecek kayıt bulunamadı",
                 ResponseStatusCode = (int)HttpStatusCode.NotFound,
             };
