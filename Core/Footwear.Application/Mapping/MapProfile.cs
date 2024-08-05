@@ -38,7 +38,9 @@ namespace Footwear.Application.Mapping
             CreateMap<Product, UpdateProductCommand>().ReverseMap();
             CreateMap<Product, GetProductByIdQueryResult>().ReverseMap();
             CreateMap<Product, GetProductQueryResult>().ReverseMap();
-            CreateMap<Product, GetProductWithCategoryQueryResult>().ReverseMap();
+            CreateMap<Product, GetProductWithCategoryQueryResult>()
+                .AfterMap((source, destination) => destination.CategoryName = source.Category.CategoryName)
+                .ReverseMap();
 
             CreateMap<AppRole, CreateRoleCommand>().ReverseMap();
             CreateMap<AppRole, UpdateRoleCommand>().ReverseMap();
