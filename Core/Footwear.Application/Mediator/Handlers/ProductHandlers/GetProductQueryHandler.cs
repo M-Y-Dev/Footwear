@@ -24,9 +24,11 @@ namespace Footwear.Application.Mediator.Handlers.ProductHandlers
             _repository = repository;
             _mapper = mapper;
         }
+
         public async Task<Response<List<GetProductQueryResult>>> Handle(GetProductQuery request, CancellationToken cancellationToken)
         {
             var values = await _repository.GetAllAsync();
+           
             if (values.Any())
                 return new Response<List<GetProductQueryResult>>
                 {

@@ -69,7 +69,12 @@
         <div class="col text-center">
             <div class="block-27">
                 <br />
-               
+               @*  @Html.PagedListPager((IPagedList)Model, page => Url.Action("ProductList", new { page }), new X.Web.PagedList.PagedListRenderOptions
+           {
+               ContainerDivClasses = new[] { "navigation" },
+               LiElementClasses = new[] { "page-item" },
+               PageClasses = new[] { "page-link" },
+           }) *@
             </div>
         </div>
     </div>

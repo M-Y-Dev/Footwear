@@ -1,8 +1,8 @@
-﻿using Footwear.Domain.Entities;
-using Footwear.UI.Areas.Admin.Dtos;
+﻿using Footwear.UI.Areas.Admin.Dtos;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using X.PagedList.Extensions;
+
+
 
 
 namespace Footwear.UI.Areas.Admin.Controllers
@@ -17,20 +17,22 @@ namespace Footwear.UI.Areas.Admin.Controllers
         }
 
 
-        public async Task<IActionResult> ProductList(int page = 1,int pageSize=5)
+        public async Task<IActionResult> ProductList()
         
         {
             var client = _httpClientFactory.CreateClient();
             var responseMessage = await client.GetAsync("https://localhost:7275/api/products/GetProductWithCategory");
-            var jsonData = await responseMessage.Content.ReadAsStringAsync();
-            var jsonObject = JsonConvert.DeserializeObject<dynamic>(jsonData);
-            if (jsonObject.responseIsSuccessfull)
+            if (responseMessage.IsSuccessStatusCode)
             {
+                var jsonData = await responseMessage.Content.ReadAsStringAsync();
+                var jsonObject = JsonConvert.DeserializeObject<dynamic>(jsonData);
                 var result = jsonObject.responseData;
-                var values = JsonConvert.DeserializeObject<List<ResultProductDto>>(result.ToString()).ToPagedList(page,pageSize);
+                var values = JsonConvert.DeserializeObject<List<ResultProductDto>>(result.ToString());
                 return View(values);
             }
             return View();
         }
+
+        
     }
 }

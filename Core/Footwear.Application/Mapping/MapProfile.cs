@@ -42,6 +42,8 @@ namespace Footwear.Application.Mapping
                 .AfterMap((source, destination) => destination.CategoryName = source.Category.CategoryName)
                 .ReverseMap();
 
+
+
             CreateMap<AppRole, CreateRoleCommand>().ReverseMap();
             CreateMap<AppRole, UpdateRoleCommand>().ReverseMap();
             CreateMap<AppRole, GetRoleQueryResult>().ReverseMap();
