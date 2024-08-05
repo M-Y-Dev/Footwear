@@ -28,10 +28,4 @@
     <ProjectReference Include="..\Footwear.Domain\Footwear.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Mediator\Handlers\OrderHandlers\" />
-    <Folder Include="Mediator\Queries\OrderQueries\" />
-    <Folder Include="Mediator\Results\OrderResults\" />
-  </ItemGroup>
-
 </Project>
