@@ -22,6 +22,9 @@ namespace Footwear.UI.Areas.Admin.Controllers
         {
             var client = _httpClientFactory.CreateClient();
             var responseMessage = await client.GetAsync("https://localhost:7275/api/products/GetProductWithCategory");
+
+            //response message base adresden sonra değişecek.
+
             var jsonData = await responseMessage.Content.ReadAsStringAsync();
             var jsonObject = JsonConvert.DeserializeObject<dynamic>(jsonData);
             
