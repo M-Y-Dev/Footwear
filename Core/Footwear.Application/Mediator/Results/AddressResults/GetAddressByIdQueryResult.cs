@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Footwear.Application.Mediator.Results.CommentResults
+namespace Footwear.Application.Mediator.Results.AddressResults
 {
-    public class GetCommentQueryResult
+    public class GetAddressByIdQueryResult
     {
         public int Id { get; set; }
         public string Country { get; set; }
