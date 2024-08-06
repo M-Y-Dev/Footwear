@@ -18,4 +18,6 @@
     <ProjectReference Include="..\..\Infrastructer\Footwear.Persistance\Footwear.Persistance.csproj" />
   </ItemGroup>
 
+  <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
+
 </Project>
