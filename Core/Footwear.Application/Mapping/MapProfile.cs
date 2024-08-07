@@ -81,5 +81,11 @@ public class MapProfile : Profile
         CreateMap<Order, UpdateOrderCommand>().ReverseMap();
         CreateMap<Order, GetOrderByIdQueryResult>().ReverseMap();
         CreateMap<Order, GetOrderQueryResult>().ReverseMap();
+
+        
+        CreateMap<Address, CreateAddressCommand>().ReverseMap();
+        CreateMap<Address, UpdateAddressCommand>().ReverseMap();
+        CreateMap<Address, GetAddressByIdQueryResult>().ReverseMap();
+        CreateMap<Address, GetAddressQueryResult>().ReverseMap();
     }
 }
