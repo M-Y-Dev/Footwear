@@ -3,7 +3,6 @@ using Footwear.Application.Base;
 using Footwear.Application.Interfaces;
 using Footwear.Application.Mediator.Queries.ProductQueries;
 using Footwear.Application.Mediator.Results.ProductResults;
-using Footwear.Domain.Entities;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -14,7 +13,8 @@ using System.Threading.Tasks;
 
 namespace Footwear.Application.Mediator.Handlers.ProductHandlers
 {
-    public class GetProductWithCategoryQueryResultHandler : IRequestHandler<GetProductWithCategoryQuery, Response<List<GetProductWithCategoryQueryResult>>>
+    
+     public class GetProductWithCategoryQueryResultHandler : IRequestHandler<GetProductWithCategoryQuery, Response<List<GetProductWithCategoryQueryResult>>>
     {
         private readonly IProductRespository _repository;
         private readonly IMapper _mapper;
@@ -24,34 +24,24 @@ namespace Footwear.Application.Mediator.Handlers.ProductHandlers
             _repository = repository;
             _mapper = mapper;
         }
+        
 
         public async Task<Response<List<GetProductWithCategoryQueryResult>>> Handle(GetProductWithCategoryQuery request, CancellationToken cancellationToken)
         {
             var values = await _repository.GetProductListWithCategory();
-            var list = values.Select(x => new GetProductWithCategoryQueryResult
-            {
-                CategoryID = x.CategoryID,
-                CategoryName = x.Category.CategoryName,
-                Price = x.Price,
-                ProductImageUrl = x.ProductImageUrl,
-                ProductName = x.ProductName,
-                ProductStock = x.ProductStock,
-                Id = x.Id
-                
-            }).ToList();
 
-            if (list.Any())
+            if (values.Any())
                 return new Response<List<GetProductWithCategoryQueryResult>>
                 {
                     ResponseIsSuccessfull = true,
-                    ResponseData = _mapper.Map<List<GetProductWithCategoryQueryResult>>(list),
+                    ResponseData = _mapper.Map<List<GetProductWithCategoryQueryResult>>(values),
                     ResponseMessage = "Kayıtlar başarıyla getirildi",
                     ResponseStatusCode = (int)HttpStatusCode.OK,
                 };
             return new Response<List<GetProductWithCategoryQueryResult>>
             {
                 ResponseIsSuccessfull = false,
-                ResponseData = _mapper.Map<List<GetProductWithCategoryQueryResult>>(list),
+                ResponseData = _mapper.Map<List<GetProductWithCategoryQueryResult>>(values),
                 ResponseMessage = "Listelenecek kayıt bulunamadı",
                 ResponseStatusCode = (int)HttpStatusCode.NotFound,
             };

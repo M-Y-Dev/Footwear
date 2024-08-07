@@ -1,4 +1,5 @@
-﻿@model List<ResultProductDto>
+﻿
+@model List<ResultProductDto>
 @{
     ViewData["Title"] = "ProductList";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
@@ -16,11 +17,11 @@
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Ürün Resim /Ürün Adı</th>
-                            <th scope="col">Ürün Stok</th>
                             <th scope="col">Ürün Fiyat</th>
                             <th scope="col">Kategori Adı</th>
                             <th scope="col">Sil</th>
                             <th scope="col">Güncelle</th>
+                            <th scope="col">Detaylar</th>
 
                         </tr>
                     </thead>
@@ -43,26 +44,64 @@
                                     </div>
                                 </th>
                                 <td>
-                                    @item.ProductStock
-                                </td>
-                                <td>
                                     @item.Price
                                 </td>
                                 <td>
-                                    @item.Category.CategoryName
+                                    @item.CategoryName
 
                                 </td>
-                                <td><a href="/Product/DeleteProduct/@item.Id" class="btn btn-warning">Sil</a></td>
-                                <td><a href="/Product/UpdateProduct/@item.Id" class="btn btn-info">Güncelle</a></td>
+                                <td><a href="/Admin/Product/DeleteProduct/@item.Id" class="btn btn-warning">Sil</a></td>
+                                <td><a href="Admin/Product/UpdateProduct/@item.Id" class="btn btn-info">Güncelle</a></td>
+                                <td><a href="" class="btn btn-outline-dark" data-toggle="modal" data-target="#Modal1-@item.Id">Detaylar</a></td>
                             </tr>
+
+                            <div class="modal" id="Modal1-@item.Id" tabindex="-1">
+                                <div class="modal-dialog modal-md">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title fw-bold"><b>@item.</b></h5><br />
+                                        </div>
+                                        <div class="modal-body">
+
+                                            <img src="@item.ProductImageUrl" style="height:370px;" />
+                                            <div class="card">
+                                                <div class="card-header"><b>Ürün Özellikleri</b></div>
+                                                <div class="card-body p-3">
+                                                    <span class="caption"><b>Ürün Stok :</b> @item.ProductStock</span><br />
+                                                    <span class="caption"><b>Ürün Kategori:</b> @item.CategoryName</span><br />
+                                                    <span class="caption"><b>Ürün Fiyat:</b> @item.Price ₺</span><br />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         }
                     </tbody>
                 </table>
-
             </div>
         </div>
         <br />
-        <td><a href="/Product/CreateProduct/" class="btn btn-primary">Yeni Ürün Girişi</a></td>
+        <td><a href="/Admin/Product/CreateProduct/" class="btn btn-primary">Yeni Ürün Girişi</a></td>
+
+
+        <div class="col text-center">
+            <div class="block-27">
+                <br />
+               @*  @Html.PagedListPager((IPagedList)Model, page => Url.Action("ProductList", new { page }), new X.Web.PagedList.PagedListRenderOptions
+           {
+               ContainerDivClasses = new[] { "navigation" },
+               LiElementClasses = new[] { "page-item" },
+               PageClasses = new[] { "page-link" },
+           }) *@
+            </div>
+        </div>
+        
     </div>
 </div>
+</div>
+
 

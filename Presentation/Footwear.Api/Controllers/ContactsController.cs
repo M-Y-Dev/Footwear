@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Footwear.Api.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/contacts")]
     [ApiController]
     public class ContactsController : ControllerBase
     {

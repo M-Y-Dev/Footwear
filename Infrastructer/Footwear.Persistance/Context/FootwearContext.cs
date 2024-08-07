@@ -14,6 +14,16 @@ namespace Footwear.Persistance.Context
         {
             
         }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<AppUser>()
+               .HasOne(x => x.AppRole)
+               .WithMany(y => y.AppUsers)
+               .HasForeignKey(z => z.RoleId)
+               .OnDelete(DeleteBehavior.ClientSetNull);
+
+            base.OnModelCreating(modelBuilder);
+        }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }
         public DbSet<About> Abouts { get; set; }
@@ -25,5 +35,7 @@ namespace Footwear.Persistance.Context
         public DbSet<Basket> Baskets { get; set; }
         public DbSet<BasketItem> BasketItems { get; set; }
         public DbSet<SocialMedia> SocialMedias{ get; set; }
+        public DbSet<AppUser> AppUsers{ get; set; }
+        public DbSet<AppRole> AppRoles{ get; set; }
     }
 }
