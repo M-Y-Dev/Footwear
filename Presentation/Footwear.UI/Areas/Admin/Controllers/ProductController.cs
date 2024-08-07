@@ -37,6 +37,17 @@ namespace Footwear.UI.Areas.Admin.Controllers
             return View();
         }
 
+        public async Task<IActionResult> DeleteProduct(int id)
+        {
+            var client = _httpClientFactory.CreateClient();
+            var responseMessage = await client.DeleteAsync($"https://localhost:7275/api/products/{id}");
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                return RedirectToAction("ProductList");
+            }
+            return View();
+        }
+
         
     }
 }
