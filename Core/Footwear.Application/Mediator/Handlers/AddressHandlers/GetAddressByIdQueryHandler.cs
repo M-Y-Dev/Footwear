@@ -47,7 +47,7 @@ namespace Footwear.Application.Mediator.Handlers.AddressHandlers
                 response.ResponseMessage = "Kayıt getirilirken sorun yaşandı.";
                 return response;
             }
-            var value = await _repository.GetById(request.Id);
+            var value = await _repository.GetSingleByIdAsync(request.Id);
             if(value is null)
             {
                 return new Response<GetAddressByIdQueryResult>

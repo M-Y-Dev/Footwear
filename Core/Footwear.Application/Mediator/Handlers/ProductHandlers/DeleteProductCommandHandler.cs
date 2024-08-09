@@ -42,7 +42,7 @@ namespace Footwear.Application.Mediator.Handlers.ProductHandlers
                 return response;
             }
 
-            var value = await _repository.GetById(request.Id);
+            var value = await _repository.GetSingleByIdAsync(request.Id);
 
             if ( value is null)
                 return new Response<object>
@@ -53,15 +53,23 @@ namespace Footwear.Application.Mediator.Handlers.ProductHandlers
                     ResponseMessage = "Silinecek kayıt bulunamadı"
                 };
 
-                await _repository.DeleteAsync(request.Id);
+            var result = await _repository.DeleteAsync(request.Id);
+
+            if(result)
+                return new Response<object>
+                {
+                    ResponseStatusCode = (int)HttpStatusCode.OK,
+                    ResponseData = null,
+                    ResponseIsSuccessfull = true,
+                    ResponseMessage = "Kayıt silindi",
+                };
             return new Response<object>
             {
-                ResponseStatusCode = (int)HttpStatusCode.OK,
-                ResponseData = "Kayıt silindi",
-                ResponseIsSuccessfull = true,
-                ResponseMessage = null,
+                ResponseStatusCode = 500,
+                ResponseData = null,
+                ResponseIsSuccessfull = false,
+                ResponseMessage = "Kayıt silinemedi",
             };
-
 
 
         }

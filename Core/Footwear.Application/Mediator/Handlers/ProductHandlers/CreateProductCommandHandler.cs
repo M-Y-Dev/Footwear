@@ -45,16 +45,25 @@ namespace Footwear.Application.Mediator.Handlers.ProductHandlers
                 return response;
             }
 
-            var result = _mapper.Map<Product>(request);
-            await _repository.CreateAsync(result);
+            var mapped= _mapper.Map<Product>(request);
+            var result = await _repository.CreateAsync(mapped);
 
+            if(result)
+                return new Response<object>
+                {
+                    ResponseStatusCode = (int)HttpStatusCode.Created,
+                    ResponseData = null,
+                    ResponseIsSuccessfull = true,
+                    ResponseMessage = "Kayıt başarıyla eklendi",
+                };
             return new Response<object>
             {
-                ResponseStatusCode = (int)HttpStatusCode.Created,
+                ResponseStatusCode = 500,
                 ResponseData = null,
-                ResponseIsSuccessfull = true,
-                ResponseMessage = "Kayıt başarıyla eklendi",
+                ResponseIsSuccessfull = false,
+                ResponseMessage = "Kayıt eklenemedi",
             };
+
         }
     }
 }

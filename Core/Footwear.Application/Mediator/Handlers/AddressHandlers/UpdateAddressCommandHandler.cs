@@ -44,7 +44,7 @@ namespace Footwear.Application.Mediator.Handlers.AddressHandlers
                 response.ResponseMessage = "Kayıt güncellenirken sorun yaşandı.";
                 return response;
             }
-            var value = await _repository.GetById(request.Id);
+            var value = await _repository.GetSingleByIdAsync(request.Id);
             if (value is null)
                 return new Response<object>
                 {
@@ -52,7 +52,7 @@ namespace Footwear.Application.Mediator.Handlers.AddressHandlers
                     ResponseData = null,
                     ResponseIsSuccessfull = false,
                     ResponseMessage = "Kayıt bulunamadı"
-                });
+                };
             _mapper.Map(request,value);
             await _repository.UpdateAsync(value);
             return new Response<object>

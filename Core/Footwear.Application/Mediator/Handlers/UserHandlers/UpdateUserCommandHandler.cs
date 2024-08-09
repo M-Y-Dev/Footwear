@@ -43,7 +43,7 @@ namespace Footwear.Application.Mediator.Handlers.UserHandlers
                 response.ResponseMessage = "Kayıt Güncelleme esnasında bir hata meydana geldi";
                 return response;
             }
-            var value = await _userRepository.GetById(request.UserId);
+            var value = await _userRepository.GetSingleByIdAsync(request.UserId);
             if(value is null)
             {
                 return new Response<object>

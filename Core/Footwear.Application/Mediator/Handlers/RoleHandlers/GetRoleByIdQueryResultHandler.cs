@@ -45,7 +45,7 @@ namespace Footwear.Application.Mediator.Handlers.RoleHandlers
                 response.ResponseMessage = "Kayıt getirilirken sorun yaşandı.";
                 return response;
             }
-            var value = await _roleRepository.GetById(request.RoleId);
+            var value = await _roleRepository.GetSingleByIdAsync(request.RoleId);
             if(value is null)
             {
                 return new Response<GetRoleByIdQueryResult>

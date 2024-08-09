@@ -49,7 +49,7 @@ namespace Footwear.Application.Mediator.Handlers.SocialMediaHandlers
             //DeleteSocialMediaCommand valid kontrol sonu
 
             //requestten gelen id ye göre veri araması
-            var value = await _repository.GetById(request.Id);
+            var value = await _repository.GetSingleByIdAsync(request.Id);
 
             //eğer bu id ye ait veri yoksa null dönecektir. Null kontrolü yapıyoruz.
             if (value is null)

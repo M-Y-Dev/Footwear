@@ -44,7 +44,7 @@ namespace Footwear.Application.Mediator.Handlers.ProductHandlers
                 return response;
             }
 
-            var value = await _repository.GetById(request.Id);
+            var value = await _repository.GetSingleByIdAsync(request.Id);
             if (value is null)
                 return new Response<object>
                 {
@@ -55,14 +55,22 @@ namespace Footwear.Application.Mediator.Handlers.ProductHandlers
                 };
 
             _mapper.Map(request, value);
-            await _repository.UpdateAsync(value);
+            var result = await _repository.UpdateAsync(value);
 
+            if(result)
+                return new Response<object>
+                {
+                    ResponseStatusCode = (int)HttpStatusCode.OK,
+                    ResponseData = null,
+                    ResponseIsSuccessfull = true,
+                    ResponseMessage = "Kayıt güncellendi"
+                };
             return new Response<object>
             {
-                ResponseStatusCode = (int)HttpStatusCode.OK,
+                ResponseStatusCode = 500,
                 ResponseData = null,
-                ResponseIsSuccessfull = true,
-                ResponseMessage = "Kayıt güncellendi"
+                ResponseIsSuccessfull = false,
+                ResponseMessage = "Kayıt güncellenemedi"
             };
         }
     }

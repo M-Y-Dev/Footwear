@@ -48,7 +48,7 @@ namespace Footwear.Application.Mediator.Handlers.SocialMediaHandlers
             //UpdateSocialMediaCommand valid kontrol sonu
 
             //requetten gelen id ye göre veri arıyoruz.
-            var value = await _repository.GetById(request.Id);
+            var value = await _repository.GetSingleByIdAsync(request.Id);
 
             //eğer bu idye ait veri yoksa null dönecektir onun kontrolünü yapıyoruz.
             if (value is null)

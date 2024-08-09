@@ -3,6 +3,7 @@ using Footwear.Application.Base;
 using Footwear.Application.Interfaces;
 using Footwear.Application.Mediator.Queries.ProductQueries;
 using Footwear.Application.Mediator.Results.ProductResults;
+using Footwear.Domain.Entities;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -16,10 +17,10 @@ namespace Footwear.Application.Mediator.Handlers.ProductHandlers
     
      public class GetProductWithCategoryQueryResultHandler : IRequestHandler<GetProductWithCategoryQuery, Response<List<GetProductWithCategoryQueryResult>>>
     {
-        private readonly IProductRespository _repository;
+        private readonly IRepository<Product> _repository;
         private readonly IMapper _mapper;
 
-        public GetProductWithCategoryQueryResultHandler(IProductRespository repository, IMapper mapper)
+        public GetProductWithCategoryQueryResultHandler(IRepository<Product> repository, IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;
@@ -28,7 +29,7 @@ namespace Footwear.Application.Mediator.Handlers.ProductHandlers
 
         public async Task<Response<List<GetProductWithCategoryQueryResult>>> Handle(GetProductWithCategoryQuery request, CancellationToken cancellationToken)
         {
-            var values = await _repository.GetProductListWithCategory();
+            var values = await _repository.GetAllAsync(includes: x => x.Category);
 
             if (values.Any())
                 return new Response<List<GetProductWithCategoryQueryResult>>

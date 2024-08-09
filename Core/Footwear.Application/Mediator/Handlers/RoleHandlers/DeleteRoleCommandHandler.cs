@@ -35,7 +35,7 @@ namespace Footwear.Application.Application.Mediator.Handlers.RoleHandlers
                 response.ResponseMessage = "Rol Silme Esnasında Bir Hata Meydana Geldi";
                 return response;
             }
-            var value = await _roleRepository.GetById(request.RoleId);
+            var value = await _roleRepository.GetSingleByIdAsync(request.RoleId);
             if(value is null)
             {
                 return new Response<object>
