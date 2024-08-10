@@ -1,5 +1,8 @@
-﻿using Footwear.Application.Mediator.Commands.AboutCommands;
+﻿using Footwear.Application.Base;
+using Footwear.Application.Mediator.Commands.AboutCommands;
 using Footwear.Application.Mediator.Commands.OrderCommands;
+using Footwear.Application.Mediator.Queries.OrderQueries;
+using Footwear.Application.Mediator.Results.OrderResults;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -19,8 +22,14 @@ public class OrdersController : ControllerBase
 
     [HttpPost]
     public async Task<IActionResult> CreateOrder(CreateOrderCommand model)
-    {
+    {       
         var result = await _mediator.Send(model);
+        return Ok(result);
+    }
+    [HttpGet]
+    public async Task<IActionResult> GetOrders()
+    {
+       var result = await _mediator.Send(new GetOrderQuery());
         return Ok(result);
     }
 }
