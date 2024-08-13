@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using Footwear.Application.Mediator.Commands.AboutCommands;
 using Footwear.Application.Mediator.Commands.AddressCommands;
+using Footwear.Application.Mediator.Commands.BasketCommands;
+using Footwear.Application.Mediator.Commands.BasketItemCommands;
 using Footwear.Application.Mediator.Commands.CategoryCommands;
 using Footwear.Application.Mediator.Commands.CommentCommands;
 using Footwear.Application.Mediator.Commands.ContactCommands;
@@ -11,6 +13,8 @@ using Footwear.Application.Mediator.Commands.SocialMediaCommands;
 using Footwear.Application.Mediator.Commands.UserCommands;
 using Footwear.Application.Mediator.Results.AboutResults;
 using Footwear.Application.Mediator.Results.AddressResults;
+using Footwear.Application.Mediator.Results.BasketItemResults;
+using Footwear.Application.Mediator.Results.BasketResults;
 using Footwear.Application.Mediator.Results.CategoryResults;
 using Footwear.Application.Mediator.Results.CommentResults;
 using Footwear.Application.Mediator.Results.ContactResults;
@@ -87,5 +91,16 @@ public class MapProfile : Profile
         CreateMap<Address, UpdateAddressCommand>().ReverseMap();
         CreateMap<Address, GetAddressByIdQueryResult>().ReverseMap();
         CreateMap<Address, GetAddressQueryResult>().ReverseMap();
+
+
+        CreateMap<Basket, CreateBasketCommand>().ReverseMap();
+        CreateMap<Basket, UpdateBasketCommand>().ReverseMap();
+        CreateMap<Basket, GetBasketByIdQueryResult>().ReverseMap();
+        CreateMap<Basket, GetBasketQueryResult>().ReverseMap();
+
+        CreateMap<BasketItem, CreateBasketItemCommand>().ReverseMap();
+        CreateMap<BasketItem, UpdateBasketItemCommand>().ReverseMap();
+        CreateMap<BasketItem, GetBasketItemByIdQueryResult>().ReverseMap();
+        CreateMap<BasketItem, GetBasketItemQueryResult>().ReverseMap();
     }
 }
