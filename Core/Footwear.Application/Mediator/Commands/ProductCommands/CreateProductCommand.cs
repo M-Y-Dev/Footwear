@@ -14,6 +14,10 @@ namespace Footwear.Application.Mediator.Commands.ProductCommands
         public string ProductImageUrl { get; set; }
         public int ProductStock { get; set; }
         public decimal Price { get; set; }
+        public int Size { get; set; }
+        public string Color { get; set; }
+        public string Description { get; set; }
+        public bool IsWoman { get; set; }
         public int CategoryID { get; set; }
         public DateTime CreatedDate { get => DateTime.Now; }
     }

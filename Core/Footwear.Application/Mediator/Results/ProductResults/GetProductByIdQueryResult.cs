@@ -13,6 +13,10 @@ namespace Footwear.Application.Mediator.Results.ProductResults
         public string ProductImageUrl { get; set; }
         public int ProductStock { get; set; }
         public decimal Price { get; set; }
+        public int Size { get; set; }
+        public string Color { get; set; }
+        public string Description { get; set; }
+        public bool IsWoman { get; set; }
         public int CategoryID { get; set; }
     }
 }
