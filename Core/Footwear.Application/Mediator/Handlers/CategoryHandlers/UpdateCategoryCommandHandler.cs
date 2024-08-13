@@ -25,6 +25,7 @@ namespace Footwear.Application.Mediator.Handlers.CategoryHandlers
             _repository = repository;
             _mapper = mapper;
         }
+
         public async Task<Response<object>> Handle(UpdateCategoryCommand request, CancellationToken cancellationToken)
         {
             UpdateCategoryCommandValidator validationRules = new UpdateCategoryCommandValidator();

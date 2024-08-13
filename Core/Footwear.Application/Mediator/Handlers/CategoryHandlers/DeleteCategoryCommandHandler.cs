@@ -22,7 +22,6 @@ namespace Footwear.Application.Mediator.Handlers.CategoryHandlers
         {
             _repository = repository;
         }
-
         public async Task<Response<object>> Handle(DeleteCategoryCommand request, CancellationToken cancellationToken)
         {
             DeleteCategoryCommandValidator validationRules = new DeleteCategoryCommandValidator();
@@ -61,7 +60,6 @@ namespace Footwear.Application.Mediator.Handlers.CategoryHandlers
                 ResponseIsSuccessfull = true,
                 ResponseMessage = null,
             };
-
         }
     }
 }
