@@ -1,0 +1,65 @@
+﻿using FluentValidation.Results;
+using Footwear.Application.Base;
+using Footwear.Application.Interfaces;
+using Footwear.Application.Mediator.Commands.BasketItemCommands;
+using Footwear.Application.Validator.BasketItemValidator;
+using Footwear.Domain.Entities;
+using MediatR;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Footwear.Application.Mediator.Handlers.BasketItemHandlers
+{
+    public class DeleteBasketItemCommandHandler : IRequestHandler<DeleteBasketItemCommand, Response<object>>
+    {
+        private readonly IRepository<BasketItem> _repository;
+
+        public DeleteBasketItemCommandHandler(IRepository<BasketItem> repository)
+        {
+            _repository = repository;
+        }
+
+        public async Task<Response<object>> Handle(DeleteBasketItemCommand request, CancellationToken cancellationToken)
+        {
+            DeleteBasketItemCommandValidator validationRules = new DeleteBasketItemCommandValidator();
+            ValidationResult validation = validationRules.Validate(request);
+            if (!validation.IsValid)
+            {
+                var response = new Response<object>();
+                foreach (var item in validation.Errors)
+                {
+                    response.ResponseErrors.Add(item.ErrorMessage.ToString());
+                }
+
+                response.ResponseStatusCode = 400;
+                response.ResponseData = null;
+                response.ResponseIsSuccessfull = false;
+                response.ResponseMessage = "Kayıt silinirken sorun yaşandı.";
+                return response;
+            }
+
+            var value = await _repository.GetSingleByIdAsync(request.Id);
+
+            if (value is null)
+                return new Response<object>
+                {
+                    ResponseStatusCode = (int)HttpStatusCode.NotFound,
+                    ResponseData = null,
+                    ResponseIsSuccessfull = false,
+                    ResponseMessage = "Silinecek kayıt bulunamadı"
+                };
+            await _repository.DeleteAsync(request.Id);
+            return new Response<object>
+            {
+                ResponseStatusCode = (int)HttpStatusCode.OK,
+                ResponseData = null,
+                ResponseIsSuccessfull = true,
+                ResponseMessage = "Kayıt silindi",
+            };
+        }
+    }
+}
