@@ -31,17 +31,17 @@ namespace Footwear.Application.Mediator.Handlers.ProductHandlers
             if (values > 0)
                 return new Response<GetProductCountQueryResult>
                 {
-                    StatusCode = (int)HttpStatusCode.OK,
-                    Data = _mapper.Map<GetProductCountQueryResult>(values),
-                    IsSuccessfull = true,
-                    Message = "Ürün sayısı getirildi"
+                    ResponseStatusCode = (int)HttpStatusCode.OK,
+                    ResponseData = _mapper.Map<GetProductCountQueryResult>(values),
+                    ResponseIsSuccessfull = true,
+                    ResponseMessage = "Ürün sayısı getirildi"
                 };
             return new Response<GetProductCountQueryResult>
             {
-                StatusCode = (int)HttpStatusCode.NotFound,
-                Data = null,
-                IsSuccessfull = false,
-                Message = "Ürün sayısı getirilemedi"
+                ResponseStatusCode = (int)HttpStatusCode.NotFound,
+                ResponseData = null,
+                ResponseIsSuccessfull = false,
+                ResponseMessage = "Ürün sayısı getirilemedi"
             };
         }
     }

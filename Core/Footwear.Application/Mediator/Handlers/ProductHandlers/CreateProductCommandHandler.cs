@@ -33,13 +33,13 @@ namespace Footwear.Application.Mediator.Handlers.ProductHandlers
                 var response = new Response<object>();
                 foreach (var item in validation.Errors)
                 {
-                    response.Errors.Add(item.ErrorMessage.ToString());
+                    response.ResponseErrors.Add(item.ErrorMessage.ToString());
                 }
 
-                response.StatusCode = 400;
-                response.Data = null;
-                response.IsSuccessfull = false;
-                response.Message = "Kayıt eklenirken sorun yaşandı.";
+                response.ResponseStatusCode = 400;
+                response.ResponseData = null;
+                response.ResponseIsSuccessfull = false;
+                response.ResponseMessage = "Kayıt eklenirken sorun yaşandı.";
                 return response;
             }
 
@@ -49,18 +49,18 @@ namespace Footwear.Application.Mediator.Handlers.ProductHandlers
             if (result) // result==true anlamındadır ve sonuç başarılıdır
                 return new Response<object>
                 {
-                    StatusCode = (int)HttpStatusCode.Created,
-                    Data = null,
-                    IsSuccessfull = true,
-                    Message = "Kayıt başarıyla eklendi",
+                    ResponseStatusCode = (int)HttpStatusCode.Created,
+                    ResponseData = null,
+                    ResponseIsSuccessfull = true,
+                    ResponseMessage = "Kayıt başarıyla eklendi",
                 };
 
             return new Response<object>
             {
-                StatusCode = 500,
-                Data = null,
-                IsSuccessfull = false,
-                Message = "Kayıt eklenemedi",
+                ResponseStatusCode = 500,
+                ResponseData = null,
+                ResponseIsSuccessfull = false,
+                ResponseMessage = "Kayıt eklenemedi",
             };
         }
 

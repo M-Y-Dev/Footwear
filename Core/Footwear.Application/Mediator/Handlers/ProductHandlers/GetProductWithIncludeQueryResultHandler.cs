@@ -32,17 +32,17 @@ namespace Footwear.Application.Mediator.Handlers.ProductHandlers
             if (values.Any())
                 return new Response<List<GetProductWithCategoryIncludeQueryResult>>
                 {
-                    IsSuccessfull = true,
-                    Data = _mapper.Map<List<GetProductWithCategoryIncludeQueryResult>>(values),
-                    Message = "Kayıtlar başarıyla getirildi",
-                    StatusCode = (int)HttpStatusCode.OK,
+                    ResponseIsSuccessfull = true,
+                    ResponseData = _mapper.Map<List<GetProductWithCategoryIncludeQueryResult>>(values),
+                    ResponseMessage = "Kayıtlar başarıyla getirildi",
+                    ResponseStatusCode = (int)HttpStatusCode.OK,
                 };
             return new Response<List<GetProductWithCategoryIncludeQueryResult>>
             {
-                IsSuccessfull = false,
-                Data = _mapper.Map<List<GetProductWithCategoryIncludeQueryResult>>(values),
-                Message = "Listelenecek kayıt bulunamadı",
-                StatusCode = (int)HttpStatusCode.NotFound,
+                ResponseIsSuccessfull = false,
+                ResponseData = _mapper.Map<List<GetProductWithCategoryIncludeQueryResult>>(values),
+                ResponseMessage = "Listelenecek kayıt bulunamadı",
+                ResponseStatusCode = (int)HttpStatusCode.NotFound,
             };
         }
     }

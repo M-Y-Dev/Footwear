@@ -35,13 +35,13 @@ namespace Footwear.Application.Mediator.Handlers.ProductHandlers
                 var response = new Response<GetProductByIdQueryResult>();
                 foreach (var item in validation.Errors)
                 {
-                    response.Errors.Add(item.ErrorMessage.ToString());
+                    response.ResponseErrors.Add(item.ErrorMessage.ToString());
                 }
 
-                response.StatusCode = 400;
-                response.Data = new GetProductByIdQueryResult();
-                response.IsSuccessfull = false;
-                response.Message = "Kayıt getirilirken sorun yaşandı.";
+                response.ResponseStatusCode = 400;
+                response.ResponseData = new GetProductByIdQueryResult();
+                response.ResponseIsSuccessfull = false;
+                response.ResponseMessage = "Kayıt getirilirken sorun yaşandı.";
                 return response;
             }
 
@@ -50,17 +50,17 @@ namespace Footwear.Application.Mediator.Handlers.ProductHandlers
             if (value is null)
                 return new Response<GetProductByIdQueryResult>
                 {
-                    StatusCode = (int)HttpStatusCode.NotFound,
-                    Data = null,
-                    IsSuccessfull = false,
-                    Message = "Kayıt bulunamadı"
+                    ResponseStatusCode = (int)HttpStatusCode.NotFound,
+                    ResponseData = null,
+                    ResponseIsSuccessfull = false,
+                    ResponseMessage = "Kayıt bulunamadı"
                 };
             return new Response<GetProductByIdQueryResult>
             {
-                StatusCode = (int)HttpStatusCode.OK,
-                Data = _mapper.Map<GetProductByIdQueryResult>(value),
-                IsSuccessfull = true,
-                Message = "Kayıt başarıyla getirildi"
+                ResponseStatusCode = (int)HttpStatusCode.OK,
+                ResponseData = _mapper.Map<GetProductByIdQueryResult>(value),
+                ResponseIsSuccessfull = true,
+                ResponseMessage = "Kayıt başarıyla getirildi"
             };
 
         }
