@@ -45,7 +45,7 @@ public class MapProfile : Profile
         CreateMap<Product, UpdateProductCommand>().ReverseMap();
         CreateMap<Product, GetProductByIdQueryResult>().ReverseMap();
         CreateMap<Product, GetProductQueryResult>().ReverseMap();
-        CreateMap<Product, GetProductWithCategoryQueryResult>()
+        CreateMap<Product, GetProductWithCategoryIncludeQueryResult>()
             .AfterMap((source, destination) => destination.CategoryName = source.Category.CategoryName)
             .ReverseMap();
 

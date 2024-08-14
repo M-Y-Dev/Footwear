@@ -20,7 +20,6 @@ namespace Footwear.Application.Validator.ProductValidator
             RuleFor(x => x.CategoryID).NotEmpty().WithMessage("Ürün kategori boş bırakılamaz.");
             RuleFor(x => x.Size).NotEmpty().WithMessage("Ayakkabı numarası boş bırakılamaz.");
             RuleFor(x => x.Color).NotEmpty().WithMessage("Ayakkabı rengi boş bırakılamaz.");
-            RuleFor(x => x.IsWoman).NotEmpty().WithMessage("Bu alan boş bırakılamaz.");
             RuleFor(x => x.Description).NotEmpty().WithMessage("Lütfen bir açıklama girin.");
         }
     }

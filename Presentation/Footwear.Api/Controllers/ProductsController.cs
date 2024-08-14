@@ -48,11 +48,28 @@ namespace Footwear.Api.Controllers
             return Ok(result);
         }
 
-        [HttpGet("GetProductWithCategory")]
-
-        public async Task<IActionResult> GetProductWithCategory()
+        [HttpGet("GetProductWithInclude")]
+        public async Task<IActionResult> GetProductWithInclude()
         {
-            var result = await _mediator.Send(new GetProductWithCategoryQuery());
+            var result = await _mediator.Send(new GetProductWithCategoryIncludeQuery());
+            return Ok(result);
+        }
+        [HttpGet("GetProductFilterAndInclude")]
+        public async Task<IActionResult> GetProductFilterAndInclude()
+        {
+            var result = await _mediator.Send(new GetProductFilterAndIncludeQuery());
+            return Ok(result);
+        }
+        [HttpGet("GetProductCount")]
+        public async Task<IActionResult> GetProductCount()
+        {
+            var result = await _mediator.Send(new GetProductCountQuery());
+            return Ok(result);
+        }
+        [HttpGet("GetProductFilterCount")]
+        public async Task<IActionResult> GetProductFilterCount()
+        {
+            var result = await _mediator.Send(new GetProductFilterCountQuery());
             return Ok(result);
         }
 

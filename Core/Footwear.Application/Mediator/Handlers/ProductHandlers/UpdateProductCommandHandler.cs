@@ -34,13 +34,13 @@ namespace Footwear.Application.Mediator.Handlers.ProductHandlers
                 var response = new Response<object>();
                 foreach (var item in validation.Errors)
                 {
-                    response.ResponseErrors.Add(item.ErrorMessage.ToString());
+                    response.Errors.Add(item.ErrorMessage.ToString());
                 }
 
-                response.ResponseStatusCode = 400;
-                response.ResponseData = null;
-                response.ResponseIsSuccessfull = false;
-                response.ResponseMessage = "Kayıt güncellenirken sorun yaşandı.";
+                response.StatusCode = 400;
+                response.Data = null;
+                response.IsSuccessfull = false;
+                response.Message = "Kayıt güncellenirken sorun yaşandı.";
                 return response;
             }
 
@@ -48,29 +48,29 @@ namespace Footwear.Application.Mediator.Handlers.ProductHandlers
             if (value is null)
                 return new Response<object>
                 {
-                    ResponseStatusCode = (int)HttpStatusCode.NotFound,
-                    ResponseData = null,
-                    ResponseIsSuccessfull = false,
-                    ResponseMessage = "Aranılan kayıt bulunamadı"
+                    StatusCode = (int)HttpStatusCode.NotFound,
+                    Data = null,
+                    IsSuccessfull = false,
+                    Message = "Güncellenecek kayıt bulunamadı"
                 };
 
             _mapper.Map(request, value);
             var result = await _repository.UpdateAsync(value);
 
-            if(result)
+            if (result)
                 return new Response<object>
                 {
-                    ResponseStatusCode = (int)HttpStatusCode.OK,
-                    ResponseData = null,
-                    ResponseIsSuccessfull = true,
-                    ResponseMessage = "Kayıt güncellendi"
+                    StatusCode = (int)HttpStatusCode.OK,
+                    Data = null,
+                    IsSuccessfull = true,
+                    Message = "Kayıt güncellendi"
                 };
             return new Response<object>
             {
-                ResponseStatusCode = 500,
-                ResponseData = null,
-                ResponseIsSuccessfull = false,
-                ResponseMessage = "Kayıt güncellenemedi"
+                StatusCode = 500,
+                Data = null,
+                IsSuccessfull = false,
+                Message = "Kayıt güncellenemedi"
             };
         }
     }

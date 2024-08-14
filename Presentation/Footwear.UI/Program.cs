@@ -1,9 +1,14 @@
+using Footwear.UI.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddHttpClient();
+
 builder.Services.AddControllersWithViews();
+
+builder.Services.Configure<ApiBaseUrl>(builder.Configuration.GetSection("ApiSettingBaseUrl"));
 
 var app = builder.Build();
 

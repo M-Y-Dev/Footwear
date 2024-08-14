@@ -5,6 +5,10 @@
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
     int count = 0;
 }
+@{
+    string gender = "";
+}
+
 <div class="row">
     <div class="col">
         <div class="card shadow">
@@ -29,6 +33,15 @@
                         @foreach (var item in Model)
                         {
                             count++;
+                            if(item.IsWoman == true)
+                            {
+                                gender = "Kadın";
+                            }
+                            else
+                            {
+                                gender = "Erkek";
+                            }
+
                             <tr>
                                 <td>
                                     @count
@@ -51,25 +64,29 @@
 
                                 </td>
                                 <td><a href="/Admin/Product/DeleteProduct/@item.Id" class="btn btn-warning">Sil</a></td>
-                                <td><a href="Admin/Product/UpdateProduct/@item.Id" class="btn btn-info">Güncelle</a></td>
+                                <td><a href="/Admin/Product/UpdateProduct/@item.Id" class="btn btn-info">Güncelle</a></td>
                                 <td><a href="" class="btn btn-outline-dark" data-toggle="modal" data-target="#Modal1-@item.Id">Detaylar</a></td>
                             </tr>
 
-                            <div class="modal" id="Modal1-@item.Id" tabindex="-1">
-                                <div class="modal-dialog modal-md">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title fw-bold"><b>@item.</b></h5><br />
+                          <div class="modal" id="Modal1-@item.Id" tabindex="-1">
+                               <div class="modal-dialog modal-md">
+                                   <div class="modal-content">
+                                       <div class="modal-header">
+                                            <h5 class="modal-title fw-bold"><b>@item.ProductName</b></h5><br />
                                         </div>
                                         <div class="modal-body">
 
-                                            <img src="@item.ProductImageUrl" style="height:370px;" />
+                                            <img src="@item.ProductImageUrl" style="width:350px;" />
                                             <div class="card">
                                                 <div class="card-header"><b>Ürün Özellikleri</b></div>
                                                 <div class="card-body p-3">
-                                                    <span class="caption"><b>Ürün Stok :</b> @item.ProductStock</span><br />
-                                                    <span class="caption"><b>Ürün Kategori:</b> @item.CategoryName</span><br />
-                                                    <span class="caption"><b>Ürün Fiyat:</b> @item.Price ₺</span><br />
+                                                <span class="caption"><b>Ürün Stok :</b> @item.ProductStock</span><br />
+                                                <span class="caption"><b>Ürün Kategori:</b> @item.CategoryName</span><br />
+                                                <span class="caption"><b>Ürün Fiyat:</b> @item.Price ₺</span><br />
+                                                <span class="caption"><b>Ürün Numara:</b> @item.Size</span><br />
+                                                <span class="caption"><b>Ürün Renk:</b> @item.Color</span><br />
+                                                <span class="caption"><b>Ürün Alt Kategori:</b> @gender</span><br />
+                                                <span class="caption"><b>Ürün Açıklama:</b> @item.Description</span><br />
                                                 </div>
                                             </div>
                                         </div>

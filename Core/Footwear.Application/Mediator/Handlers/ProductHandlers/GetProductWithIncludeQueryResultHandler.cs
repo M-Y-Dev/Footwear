@@ -14,32 +14,33 @@ using System.Threading.Tasks;
 
 namespace Footwear.Application.Mediator.Handlers.ProductHandlers
 {
-    public class GetProductQueryHandler : IRequestHandler<GetProductQuery, Response<List<GetProductQueryResult>>>
+    
+     public class GetProductWithIncludeQueryResultHandler : IRequestHandler<GetProductWithCategoryIncludeQuery, Response<List<GetProductWithCategoryIncludeQueryResult>>>
     {
         private readonly IRepository<Product> _repository;
         private readonly IMapper _mapper;
 
-        public GetProductQueryHandler(IRepository<Product> repository, IMapper mapper)
+        public GetProductWithIncludeQueryResultHandler(IRepository<Product> repository, IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;
         }
 
-        public async Task<Response<List<GetProductQueryResult>>> Handle(GetProductQuery request, CancellationToken cancellationToken)
+        public async Task<Response<List<GetProductWithCategoryIncludeQueryResult>>> Handle(GetProductWithCategoryIncludeQuery request, CancellationToken cancellationToken)
         {
-            var values = await _repository.GetAllAsync();
+            var values = await _repository.GetAllAsync(filter: null, includes: x => x.Category);
             if (values.Any())
-                return new Response<List<GetProductQueryResult>>
+                return new Response<List<GetProductWithCategoryIncludeQueryResult>>
                 {
                     IsSuccessfull = true,
-                    Data = _mapper.Map<List<GetProductQueryResult>>(values),
+                    Data = _mapper.Map<List<GetProductWithCategoryIncludeQueryResult>>(values),
                     Message = "Kayıtlar başarıyla getirildi",
                     StatusCode = (int)HttpStatusCode.OK,
                 };
-            return new Response<List<GetProductQueryResult>>
+            return new Response<List<GetProductWithCategoryIncludeQueryResult>>
             {
                 IsSuccessfull = false,
-                Data = _mapper.Map<List<GetProductQueryResult>>(values),
+                Data = _mapper.Map<List<GetProductWithCategoryIncludeQueryResult>>(values),
                 Message = "Listelenecek kayıt bulunamadı",
                 StatusCode = (int)HttpStatusCode.NotFound,
             };

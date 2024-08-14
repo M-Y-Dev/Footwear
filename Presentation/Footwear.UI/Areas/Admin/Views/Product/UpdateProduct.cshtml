@@ -1,0 +1,65 @@
+﻿@model UpdateProductDto
+@{
+    ViewData["Title"] = "UpdateProduct";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col">
+        <div class="card shadow">
+            <div class="card-header border-0">
+                <h3 class="mb-0">Ürün Güncelleme Sayfası</h3>
+            </div>
+            <div class="table-responsive">
+                <table class="table align-items-center table-flush">
+                    <thead class="thead-light">
+                    <tbody>
+                        <form method="post">
+                            <div class="container">
+                                <br /><br />
+                                <input type="hidden" asp-for="Id"/>
+                                <label>Ürün Görsel Url</label>
+                                <input type="text" name="ProductImageUrl" class="form-control" />
+                                <br />
+                                <label>Ürün Adı</label>
+                                <input type="text" asp-for="ProductName" class="form-control" />
+                                <br />
+                                <label>Ürün Fiyat</label>
+                                <input type="text" asp-for="Price" class="form-control" />
+                                <br />
+                                <label>Ürün Stock</label>
+                                <input type="text" asp-for="ProductStock" class="form-control" />
+                                <br />
+                                <label>Ürün Numara</label>
+                                <input type="text" asp-for="Size" class="form-control" />
+                                <br />
+                                <label>Ürün Renk</label>
+                                <input type="text" asp-for="Color" class="form-control" />
+                                <br />
+                                <label>Ürün Kategori</label>
+                                <select class="form-control" id="val-skill" asp-for="CategoryID">
+                                    < @foreach (var item in ViewBag.CategoryList)
+                                        {
+                                        <option value="@item.Id">@item.CategoryName</option>
+                                        }
+                                </select>
+                                <br />
+                                <label>Ürün Alt Kategori</label>
+                                <select class="form-control" id="val-skill" asp-for="IsWoman">
+                                    <option value="true">Kadın</option>
+                                    <option value="false">Erkek</option>
+                                </select>
+                                <br />
+                                <label>Açıklama</label>
+                                <textarea rows="6" asp-for="Description" class="form-control"></textarea>
+                                <br />
+                                <button type="submit" class="btn btn-primary">Ürünü Güncelle</button>
+                                <br /><br />
+                        </form>
+                    </tbody>
+                </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

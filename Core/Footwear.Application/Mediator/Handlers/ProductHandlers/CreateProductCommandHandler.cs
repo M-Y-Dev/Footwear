@@ -6,12 +6,8 @@ using Footwear.Application.Mediator.Commands.ProductCommands;
 using Footwear.Application.Validator.ProductValidator;
 using Footwear.Domain.Entities;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Footwear.Application.Mediator.Handlers.ProductHandlers
 {
@@ -20,11 +16,13 @@ namespace Footwear.Application.Mediator.Handlers.ProductHandlers
         private readonly IRepository<Product> _repository;
         private readonly IMapper _mapper;
 
+
         public CreateProductCommandHandler(IRepository<Product> repository, IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;
         }
+
 
         public async Task<Response<object>> Handle(CreateProductCommand request, CancellationToken cancellationToken)
         {
@@ -35,35 +33,39 @@ namespace Footwear.Application.Mediator.Handlers.ProductHandlers
                 var response = new Response<object>();
                 foreach (var item in validation.Errors)
                 {
-                    response.ResponseErrors.Add(item.ErrorMessage.ToString());
+                    response.Errors.Add(item.ErrorMessage.ToString());
                 }
 
-                response.ResponseStatusCode = 400;
-                response.ResponseData = null;
-                response.ResponseIsSuccessfull = false;
-                response.ResponseMessage = "Kayıt eklenirken sorun yaşandı.";
+                response.StatusCode = 400;
+                response.Data = null;
+                response.IsSuccessfull = false;
+                response.Message = "Kayıt eklenirken sorun yaşandı.";
                 return response;
             }
 
-            var mapped= _mapper.Map<Product>(request);
+            var mapped = _mapper.Map<Product>(request);
             var result = await _repository.CreateAsync(mapped);
 
-            if(result)
+            if (result) // result==true anlamındadır ve sonuç başarılıdır
                 return new Response<object>
                 {
-                    ResponseStatusCode = (int)HttpStatusCode.Created,
-                    ResponseData = null,
-                    ResponseIsSuccessfull = true,
-                    ResponseMessage = "Kayıt başarıyla eklendi",
+                    StatusCode = (int)HttpStatusCode.Created,
+                    Data = null,
+                    IsSuccessfull = true,
+                    Message = "Kayıt başarıyla eklendi",
                 };
+
             return new Response<object>
             {
-                ResponseStatusCode = 500,
-                ResponseData = null,
-                ResponseIsSuccessfull = false,
-                ResponseMessage = "Kayıt eklenemedi",
+                StatusCode = 500,
+                Data = null,
+                IsSuccessfull = false,
+                Message = "Kayıt eklenemedi",
             };
-
         }
+
+
+
     }
 }
+

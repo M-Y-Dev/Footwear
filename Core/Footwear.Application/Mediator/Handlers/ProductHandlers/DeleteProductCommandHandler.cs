@@ -32,45 +32,44 @@ namespace Footwear.Application.Mediator.Handlers.ProductHandlers
                 var response = new Response<object>();
                 foreach (var item in validation.Errors)
                 {
-                    response.ResponseErrors.Add(item.ErrorMessage.ToString());
+                    response.Errors.Add(item.ErrorMessage.ToString());
                 }
 
-                response.ResponseStatusCode = 400;
-                response.ResponseData = null;
-                response.ResponseIsSuccessfull = false;
-                response.ResponseMessage = "Kayıt silinirken sorun yaşandı.";
+                response.StatusCode = 400;
+                response.Data = null;
+                response.IsSuccessfull = false;
+                response.Message = "Kayıt silinirken sorun yaşandı.";
                 return response;
             }
 
             var value = await _repository.GetSingleByIdAsync(request.Id);
 
-            if ( value is null)
+            if (value is null)
                 return new Response<object>
                 {
-                    ResponseStatusCode = (int)HttpStatusCode.NotFound,
-                    ResponseData = null,
-                    ResponseIsSuccessfull = false,
-                    ResponseMessage = "Silinecek kayıt bulunamadı"
+                    StatusCode = (int)HttpStatusCode.NotFound,
+                    Data = null,
+                    IsSuccessfull = false,
+                    Message = "Silinecek kayıt bulunamadı"
                 };
 
             var result = await _repository.DeleteAsync(request.Id);
 
-            if(result)
+            if (result) // result==true anlamındadır ve sonuç başarılıdır
                 return new Response<object>
                 {
-                    ResponseStatusCode = (int)HttpStatusCode.OK,
-                    ResponseData = null,
-                    ResponseIsSuccessfull = true,
-                    ResponseMessage = "Kayıt silindi",
+                    StatusCode = (int)HttpStatusCode.OK,
+                    Data = null,
+                    IsSuccessfull = true,
+                    Message = "Kayıt Silindi",
                 };
             return new Response<object>
             {
-                ResponseStatusCode = 500,
-                ResponseData = null,
-                ResponseIsSuccessfull = false,
-                ResponseMessage = "Kayıt silinemedi",
+                StatusCode = 500,
+                Data = null,
+                IsSuccessfull = false,
+                Message = "Kayıt silinemedi",
             };
-
 
         }
     }

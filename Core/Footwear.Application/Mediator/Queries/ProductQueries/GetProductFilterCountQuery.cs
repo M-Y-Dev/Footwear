@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Footwear.Application.Mediator.Queries.ProductQueries
 {
-    public class GetProductWithCategoryQuery : IRequest<Response<List<GetProductWithCategoryQueryResult>>>
+    public class GetProductFilterCountQuery : IRequest<Response<GetProductFilterCountQueryResult>>
     {
     }
 }
