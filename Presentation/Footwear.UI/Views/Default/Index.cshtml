@@ -1,0 +1,13 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_UILayout.cshtml";
+}
+
+@await Component.InvokeAsync("_BannerPartialComponent")
+
+@await Component.InvokeAsync("_FeaturesPartialComponent")
+
+@await Component.InvokeAsync("_RecentProductPartialComponent")
+
+@await Component.InvokeAsync("_BrandPartialComponent")

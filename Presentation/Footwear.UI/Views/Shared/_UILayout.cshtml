@@ -1,0 +1,29 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE HTML>
+<html>
+
+@await Html.PartialAsync("/Views/_UILayout/_HeadPartial.cshtml")
+
+<body>
+    <div class="colorlib-loader"></div>
+    <div id="page">
+
+        @await Html.PartialAsync("/Views/_UILayout/_NavbarPartial.cshtml")
+
+        @RenderBody()
+
+        @await Component.InvokeAsync("_FooterPartialComponent")
+
+    </div>
+    <div class="gototop js-top">
+        <a href="#" class="js-gotop"><i class="ion-ios-arrow-up"></i></a>
+    </div>
+
+    @await Html.PartialAsync("/Views/_UILayout/_ScriptPartial.cshtml")
+
+</body>
+</html>
