@@ -36,13 +36,13 @@
                                 <input type="text" asp-for="Color" class="form-control" />
                                 <br />
                                 <label>Ürün Kategori</label>
-                                <select class="form-control" id="val-skill" asp-for="CategoryID">
+                                @* <select class="form-control" id="val-skill" asp-for="CategoryID">
                                     <option value="">Seçiniz</option>
                                     < @foreach (var item in ViewBag.CategoryList)
                                         {
                                         <option value="@item.Id">@item.CategoryName</option>
                                         }
-                                </select>
+                                </select> *@
                                 <br />
                                 <label>Ürün Alt Kategori</label>
                                 <select class="form-control" id="val-skill" asp-for="IsWoman">
@@ -54,7 +54,14 @@
                                 <label>Açıklama</label>
                                 <textarea rows="6" asp-for="Description" class="form-control"></textarea>
                                 <br />
-                                <button type="submit" class="btn btn-primary">Ürünü Ekle</button>
+                                    @if (ViewBag.Errors != null && ViewBag.Errors.Count > 0)
+                                    {
+                                        @foreach (var item in ViewBag.Errors)
+                                        {
+                                            <p class="text-danger">@item</p>
+                                        }
+                                    }
+                                    <button type="submit" class="btn btn-primary">Ürünü Ekle</button>
                                 <br /><br />
                         </form>
                     </tbody>

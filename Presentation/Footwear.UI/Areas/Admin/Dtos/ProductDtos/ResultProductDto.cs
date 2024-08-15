@@ -15,6 +15,5 @@ namespace Footwear.UI.Areas.Admin.Dtos.ProductDtos
         public bool IsWoman { get; set; }
         public int CategoryID { get; set; }
         public string CategoryName { get; set; }
-        public Category Category { get; set; }
     }
 }
