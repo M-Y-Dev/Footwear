@@ -32,4 +32,10 @@ public class OrdersController : ControllerBase
        var result = await _mediator.Send(new GetOrderQuery());
         return Ok(result);
     }
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteOrder(int id)
+    {
+        var result = await _mediator.Send(new DeleteOrderCommand(id));
+        return Ok(result);
+    }
 }
