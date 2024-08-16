@@ -29,72 +29,82 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var item in Model)
+                        @if (Model.Count() > 0)
                         {
-                            count++;
-                            if(item.IsWoman == true)
+                            @foreach (var item in Model)
                             {
-                                gender = "Kadın";
-                            }
-                            else
-                            {
-                                gender = "Erkek";
-                            }
+                                count++;
+                                if (item.IsWoman == true)
+                                {
+                                    gender = "Kadın";
+                                }
+                                else
+                                {
+                                    gender = "Erkek";
+                                }
 
-                            <tr>
-                                <td>
-                                    @count
-                                </td>
-                                <th scope="row">
-                                    <div class="media align-items-center">
-                                        <a href="#" class="avatar rounded-circle mr-3">
-                                            <img alt="Image placeholder" src="@item.ProductImageUrl">
-                                        </a>
-                                        <div class="media-body">
-                                            <span class="mb-0 text-sm">@item.ProductName</span>
-                                        </div>
-                                    </div>
-                                </th>
-                                <td>
-                                    @item.Price
-                                </td>
-                                <td>
-                                    @item.CategoryName
-
-                                </td>
-                                <td><a href="/Admin/Product/DeleteProduct/@item.Id" class="btn btn-warning">Sil</a></td>
-                                <td><a href="/Admin/Product/UpdateProduct/@item.Id" class="btn btn-info">Güncelle</a></td>
-                                <td><a href="" class="btn btn-outline-dark" data-toggle="modal" data-target="#Modal1-@item.Id">Detaylar</a></td>
-                            </tr>
-
-                          <div class="modal" id="Modal1-@item.Id" tabindex="-1">
-                               <div class="modal-dialog modal-md">
-                                   <div class="modal-content">
-                                       <div class="modal-header">
-                                            <h5 class="modal-title fw-bold"><b>@item.ProductName</b></h5><br />
-                                        </div>
-                                        <div class="modal-body">
-
-                                            <img src="@item.ProductImageUrl" style="width:350px;" />
-                                            <div class="card">
-                                                <div class="card-header"><b>Ürün Özellikleri</b></div>
-                                                <div class="card-body p-3">
-                                                <span class="caption"><b>Ürün Stok :</b> @item.ProductStock</span><br />
-                                                <span class="caption"><b>Ürün Kategori:</b> @item.CategoryName</span><br />
-                                                <span class="caption"><b>Ürün Fiyat:</b> @item.Price ₺</span><br />
-                                                <span class="caption"><b>Ürün Numara:</b> @item.Size</span><br />
-                                                <span class="caption"><b>Ürün Renk:</b> @item.Color</span><br />
-                                                <span class="caption"><b>Ürün Alt Kategori:</b> @gender</span><br />
-                                                <span class="caption"><b>Ürün Açıklama:</b> @item.Description</span><br />
-                                                </div>
+                                <tr>
+                                    <td>
+                                        @count
+                                    </td>
+                                    <th scope="row">
+                                        <div class="media align-items-center">
+                                            <a href="#" class="avatar rounded-circle mr-3">
+                                                <img alt="Image placeholder" src="@item.ProductImageUrl">
+                                            </a>
+                                            <div class="media-body">
+                                                <span class="mb-0 text-sm">@item.ProductName</span>
                                             </div>
                                         </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+                                    </th>
+                                    <td>
+                                        @item.Price
+                                    </td>
+                                    <td>
+                                        @item.CategoryName
+
+                                    </td>
+                                    <td><a href="/Admin/Product/DeleteProduct/@item.Id" class="btn btn-outline-danger">Sil</a></td>
+                                    <td><a href="/Admin/Product/UpdateProduct/@item.Id" class="btn btn-outline-info">Güncelle</a></td>
+                                    <td><a href="" class="btn btn-outline-dark" data-toggle="modal" data-target="#Modal1-@item.Id">Detaylar</a></td>
+                                </tr>
+
+                                <div class="modal" id="Modal1-@item.Id" tabindex="-1">
+                                    <div class="modal-dialog modal-md">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title fw-bold"><b>@item.ProductName</b></h5><br />
+                                            </div>
+                                            <div class="modal-body">
+
+                                                <img src="@item.ProductImageUrl" style="width:350px;" />
+                                                <div class="card">
+                                                    <div class="card-header"><b>Ürün Özellikleri</b></div>
+                                                    <div class="card-body p-3">
+                                                        <span class="caption"><b>Ürün Stok :</b> @item.ProductStock</span><br />
+                                                        <span class="caption"><b>Ürün Kategori:</b> @item.CategoryName</span><br />
+                                                        <span class="caption"><b>Ürün Fiyat:</b> @item.Price ₺</span><br />
+                                                        <span class="caption"><b>Ürün Numara:</b> @item.Size</span><br />
+                                                        <span class="caption"><b>Ürün Renk:</b> @item.Color</span><br />
+                                                        <span class="caption"><b>Ürün Alt Kategori:</b> @gender</span><br />
+                                                        <span class="caption"><b>Ürün Açıklama:</b> @item.Description</span><br />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            }
+                        }
+                        else
+                        {
+                            if (ViewBag.Message != null)
+                            {
+                                <h3 class="alert alert-outline-warning">@ViewBag.Message</h3>
+                            }
                         }
                     </tbody>
                 </table>
@@ -107,17 +117,17 @@
         <div class="col text-center">
             <div class="block-27">
                 <br />
-               @*  @Html.PagedListPager((IPagedList)Model, page => Url.Action("ProductList", new { page }), new X.Web.PagedList.PagedListRenderOptions
-           {
-               ContainerDivClasses = new[] { "navigation" },
-               LiElementClasses = new[] { "page-item" },
-               PageClasses = new[] { "page-link" },
-           }) *@
+                @*  @Html.PagedListPager((IPagedList)Model, page => Url.Action("ProductList", new { page }), new X.Web.PagedList.PagedListRenderOptions
+                {
+                ContainerDivClasses = new[] { "navigation" },
+                LiElementClasses = new[] { "page-item" },
+                PageClasses = new[] { "page-link" },
+                }) *@
             </div>
         </div>
-        
+
     </div>
 </div>
-</div>
+
 
 

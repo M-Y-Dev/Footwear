@@ -1,4 +1,4 @@
-﻿@model UpdateProductDto
+﻿@model GetByIdProductDto
 @{
     ViewData["Title"] = "UpdateProduct";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
@@ -19,7 +19,7 @@
                                 <br /><br />
                                 <input type="hidden" asp-for="Id"/>
                                 <label>Ürün Görsel Url</label>
-                                <input type="text" name="ProductImageUrl" class="form-control" />
+                                <input type="text" asp-for="ProductImageUrl" class="form-control" />
                                 <br />
                                 <label>Ürün Adı</label>
                                 <input type="text" asp-for="ProductName" class="form-control" />
@@ -53,6 +53,16 @@
                                 <label>Açıklama</label>
                                 <textarea rows="6" asp-for="Description" class="form-control"></textarea>
                                 <br />
+                                    @if (ViewBag.Errors != null && ViewBag.Errors.Count > 0)
+                                    {
+                                    <div class="alert alert-danger">
+                                            @foreach (var item in ViewBag.Errors)
+                                            {
+                                            <p>@item</p>
+
+                                            }
+                                    </div>
+                                    }
                                 <button type="submit" class="btn btn-primary">Ürünü Güncelle</button>
                                 <br /><br />
                         </form>
