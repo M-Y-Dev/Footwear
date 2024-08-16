@@ -9,6 +9,7 @@ namespace Footwear.Application.Mediator.Results.OrderResults;
 
 public class GetOrderQueryResult
 {
+    public int Id { get; set; }
     public int UserId { get; set; }
     public string OrderNumber { get; set; }
     public decimal TotalAmount { get; set; }
