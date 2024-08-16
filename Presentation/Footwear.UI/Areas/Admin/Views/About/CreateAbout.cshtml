@@ -23,6 +23,16 @@
                     <label class="form-control-label" for="input-address">Video URL</label>
                     <input id="input-address" class="form-control form-control-alternative" asp-for="VideoUrl" placeholder="VideoURL" type="text" />
                 </div>
+                    @if (ViewBag.Errors != null && ViewBag.Errors.Count > 0)
+                    {
+                        <div class="alert alert-danger">
+                            @foreach (var item in ViewBag.Errors)
+                            {
+                                <p>@item</p>
+
+                            }
+                        </div>
+                    }
                 <div class="form-group">
                     <button class="btn btn-primary">Ekle</button>
                 </div>
