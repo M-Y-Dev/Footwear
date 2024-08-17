@@ -1,6 +1,7 @@
 ﻿using Footwear.Application.Base;
 using Footwear.Application.Mediator.Commands.AboutCommands;
 using Footwear.Application.Mediator.Commands.OrderCommands;
+using Footwear.Application.Mediator.Queries.AboutQueries;
 using Footwear.Application.Mediator.Queries.OrderQueries;
 using Footwear.Application.Mediator.Results.OrderResults;
 using MediatR;
@@ -36,6 +37,12 @@ public class OrdersController : ControllerBase
     public async Task<IActionResult> DeleteOrder(int id)
     {
         var result = await _mediator.Send(new DeleteOrderCommand(id));
+        return Ok(result);
+    }
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetOrderById(int id)
+    {
+        var result = await _mediator.Send(new GetOrderByIdQuery(id));
         return Ok(result);
     }
 }
