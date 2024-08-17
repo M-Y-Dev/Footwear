@@ -45,4 +45,10 @@ public class OrdersController : ControllerBase
         var result = await _mediator.Send(new GetOrderByIdQuery(id));
         return Ok(result);
     }
+    [HttpPut]
+    public async Task<IActionResult> UpdateOrder(UpdateOrderCommand command)
+    {
+        var result = await _mediator.Send(command);
+        return Ok(result);
+    }
 }
