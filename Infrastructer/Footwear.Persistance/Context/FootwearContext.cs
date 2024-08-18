@@ -37,6 +37,8 @@ namespace Footwear.Persistance.Context
         public DbSet<SocialMedia> SocialMedias{ get; set; }
         public DbSet<AppUser> AppUsers{ get; set; }
         public DbSet<AppRole> AppRoles{ get; set; }
+        public DbSet<Brand> Brands{ get; set; }
+        public DbSet<Banner> Banners{ get; set; }
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
