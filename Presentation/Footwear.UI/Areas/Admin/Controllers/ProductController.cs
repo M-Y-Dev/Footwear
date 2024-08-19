@@ -67,19 +67,7 @@ namespace Footwear.UI.Areas.Admin.Controllers
         public async Task<IActionResult> CreateProduct()
         {
 
-            var client = _httpClientFactory.CreateClient();
-            client.BaseAddress = new Uri(_apiBaseUrl.BaseUrl);
-            var responseMessage = await client.GetAsync("Categories");
-            var jsonData = await responseMessage.Content.ReadAsStringAsync();
-            var jsonObject = JsonConvert.DeserializeObject<dynamic>(jsonData);
-            if ((bool)jsonObject.responseIsSuccessfull)
-            {
-                var values = JsonConvert.DeserializeObject<List<ResultCategoryDto>>(jsonObject.responseData.ToString());
-                ViewBag.CategoryList = values;
-            }
-
-
-
+            await GetCategoryList();
             return View();
             
         }
@@ -117,16 +105,7 @@ namespace Footwear.UI.Areas.Admin.Controllers
         public async Task<IActionResult> UpdateProduct(int id)
         {
 
-            var clientCtgry = _httpClientFactory.CreateClient();
-            clientCtgry.BaseAddress = new Uri(_apiBaseUrl.BaseUrl);
-            var responseMessageCtgry = await clientCtgry.GetAsync("Categories");
-            var jsonDataCtgry = await responseMessageCtgry.Content.ReadAsStringAsync();
-            var jsonObjectCtgry = JsonConvert.DeserializeObject<dynamic>(jsonDataCtgry);
-            if ((bool)jsonObjectCtgry.responseIsSuccessfull)
-            {
-                var values = JsonConvert.DeserializeObject<List<ResultCategoryDto>>(jsonObjectCtgry.responseData.ToString());
-                ViewBag.CategoryList = values;
-            }
+            await GetCategoryList();
 
             var client = _httpClientFactory.CreateClient();
             client.BaseAddress = new Uri(_apiBaseUrl.BaseUrl);
@@ -177,6 +156,21 @@ namespace Footwear.UI.Areas.Admin.Controllers
 
                 return View();
             }
+        }
+
+        public async Task GetCategoryList()
+        {
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_apiBaseUrl.BaseUrl);
+            var responseMessage = await client.GetAsync("Categories");
+            var jsonData = await responseMessage.Content.ReadAsStringAsync();
+            var jsonObject = JsonConvert.DeserializeObject<dynamic>(jsonData);
+            if ((bool)jsonObject.responseIsSuccessfull)
+            {
+                var values = JsonConvert.DeserializeObject<List<ResultCategoryDto>>(jsonObject.responseData.ToString());
+                ViewBag.CategoryList = new SelectList(values,"Id","CategoryName");
+            }
+
         }
     }
 }
