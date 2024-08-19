@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Footwear.Application.Mediator.Results.AddressResults
+﻿namespace Footwear.UI.Areas.Admin.Dtos.AddressDtos
 {
-    public class GetAddressQueryResult
+    public class UpdateAddressDto
     {
         public int Id { get; set; }
         public string Country { get; set; }

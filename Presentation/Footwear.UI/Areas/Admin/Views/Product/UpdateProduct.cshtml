@@ -37,12 +37,7 @@
                                 <input type="text" asp-for="Color" class="form-control" />
                                 <br />
                                 <label>Ürün Kategori</label>
-                                <select class="form-control" id="val-skill" asp-for="CategoryID">
-                                    < @foreach (var item in ViewBag.CategoryList)
-                                        {
-                                        <option value="@item.Id">@item.CategoryName</option>
-                                        }
-                                </select>
+                                    @Html.DropDownListFor(x => x.CategoryID, (SelectList)ViewBag.CategoryList, "Kategori Seçiniz", new { @class = "form-control" })
                                 <br />
                                 <label>Ürün Alt Kategori</label>
                                 <select class="form-control" id="val-skill" asp-for="IsWoman">
