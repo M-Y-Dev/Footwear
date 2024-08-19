@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using Footwear.Application.Mediator.Commands.BrandCommand;
 using Footwear.Application.Mediator.Queries.BrandQueries;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Footwear.Application.Validator.BrandValidator
 {
-    public class DeleteBrandCommandValidator : AbstractValidator<GetBrandByIdQuery>
+    public class DeleteBrandCommandValidator : AbstractValidator<DeleteBrandCommand>
     {
         public DeleteBrandCommandValidator ()
         {

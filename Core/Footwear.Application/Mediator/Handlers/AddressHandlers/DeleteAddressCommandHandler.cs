@@ -42,7 +42,7 @@ namespace Footwear.Application.Mediator.Handlers.AddressHandlers
                 return response;
             }
             var value = await _repository.GetSingleByIdAsync(request.Id);
-            if(value is null)
+            if (value is null)
                 return new Response<object>
                 {
                     ResponseStatusCode = (int)HttpStatusCode.NotFound,
