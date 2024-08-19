@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Footwear.Application.Mediator.Commands.AboutCommands;
 using Footwear.Application.Mediator.Commands.AddressCommands;
+using Footwear.Application.Mediator.Commands.BannerCommands;
 using Footwear.Application.Mediator.Commands.BasketCommands;
 using Footwear.Application.Mediator.Commands.BasketItemCommands;
 using Footwear.Application.Mediator.Commands.BrandCommand;
@@ -14,6 +15,7 @@ using Footwear.Application.Mediator.Commands.SocialMediaCommands;
 using Footwear.Application.Mediator.Commands.UserCommands;
 using Footwear.Application.Mediator.Results.AboutResults;
 using Footwear.Application.Mediator.Results.AddressResults;
+using Footwear.Application.Mediator.Results.BannerResults;
 using Footwear.Application.Mediator.Results.BasketItemResults;
 using Footwear.Application.Mediator.Results.BasketResults;
 using Footwear.Application.Mediator.Results.BrandResults;
@@ -109,5 +111,10 @@ public class MapProfile : Profile
         CreateMap<Brand, UpdateBrandCommand>().ReverseMap();
         CreateMap<Brand, GetBrandByIdQueryResult>().ReverseMap();
         CreateMap<Brand, GetBrandQueryResult>().ReverseMap();
+
+        CreateMap<Banner, CreateBannerCommand>().ReverseMap();
+        CreateMap<Banner, UpdateBannerCommand>().ReverseMap();
+        CreateMap<Banner, GetBannerByIdQueryResult>().ReverseMap();
+        CreateMap<Banner, GetBannerQueryResult>().ReverseMap();
     }
 }

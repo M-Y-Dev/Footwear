@@ -13,6 +13,7 @@ namespace Footwear.Application.Validator.BrandValidator
         public CreateBrandCommandValidator ()
         {
             RuleFor(x=>x.ImageUrl).NotEmpty().WithMessage("Resim Kısayolu Boş Bırakılamaz");
+            RuleFor(x=>x.Name).NotEmpty().WithMessage("Marka Adı Boş Bırakılamaz");
         }
     }
 }

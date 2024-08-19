@@ -10,7 +10,7 @@ namespace Footwear.Application.Mediator.Commands.BrandCommand
 {
     public class CreateBrandCommand : IRequest<Response<object>>
     {
-     // public string Name { get; set; }
+        public string Name { get; set; }
         public string ImageUrl { get; set; }
     }
 }

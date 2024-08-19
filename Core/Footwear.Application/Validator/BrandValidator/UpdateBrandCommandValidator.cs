@@ -12,6 +12,7 @@ namespace Footwear.Application.Validator.BrandValidator
     {
         public UpdateBrandCommandValidator ()
         {
+            RuleFor(x => x.Id).NotEmpty().WithMessage("Id Boş Bırakılamaz");
             RuleFor(x => x.Name).NotEmpty().WithMessage("İsim boş bırakılamaz.");
             RuleFor(x => x.ImageUrl).NotEmpty().WithMessage("Resim Kısayolu Boş Bırakılamaz");
             
