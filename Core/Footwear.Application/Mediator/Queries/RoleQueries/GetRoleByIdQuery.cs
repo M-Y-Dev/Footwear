@@ -11,11 +11,11 @@ namespace Footwear.Application.Mediator.Queries.RoleQueries
 {
     public class GetRoleByIdQuery : IRequest<Response<GetRoleByIdQueryResult>>
     {
-        public int RoleId { get; set; }
+        public int Id { get; set; }
 
-        public GetRoleByIdQuery(int roleId)
+        public GetRoleByIdQuery(int ıd)
         {
-            RoleId = roleId;
+            Id = ıd;
         }
     }
 }

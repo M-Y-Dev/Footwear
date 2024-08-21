@@ -12,6 +12,7 @@ namespace Footwear.Application.Validator.UserValidator
     {
         public UpdateUserCommandValidator()
         {
+            RuleFor(x => x.Email).EmailAddress().WithMessage("Geçerli bir mail adresi yazınız.");
             
         }
     }

@@ -12,7 +12,7 @@ namespace Footwear.Application.Validator.UserValidator
     {
         public GetUserByIdQueryValidator()
         {
-            RuleFor(x => x.UserId).GreaterThan(0).NotEmpty().WithMessage("Id boş bırakılamaz.");
+            RuleFor(x => x.Id).GreaterThan(0).NotEmpty().WithMessage("Id boş bırakılamaz.");
         }
     }
 }

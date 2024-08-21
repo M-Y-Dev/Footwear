@@ -10,11 +10,11 @@ namespace Footwear.Application.Mediator.Commands.RoleCommands
 {
     public class DeleteRoleCommand : IRequest<Response<object>>
     {
-        public int RoleId { get; set; }
+        public int Id { get; set; }
 
-        public DeleteRoleCommand(int roleId)
+        public DeleteRoleCommand(int ıd)
         {
-            RoleId = roleId;
+            Id = ıd;
         }
     }
 }

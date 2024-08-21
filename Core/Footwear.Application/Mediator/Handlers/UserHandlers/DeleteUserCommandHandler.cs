@@ -43,7 +43,7 @@ namespace Footwear.Application.Mediator.Handlers.UserHandlers
                 response.ResponseMessage = "Kullanıcı kaydını silerken Bir Hata Meydana Geldi";
                 return response;
             }
-            var value = await _userRepository.GetSingleByIdAsync(request.UserId);
+            var value = await _userRepository.GetSingleByIdAsync(request.Id);
             if(value is null)
             {
                 return new Response<object>
@@ -56,7 +56,7 @@ namespace Footwear.Application.Mediator.Handlers.UserHandlers
             }
             else
             {
-                await _userRepository.DeleteAsync(request.UserId);
+                await _userRepository.DeleteAsync(request.Id);
                 return new Response<object>
                 {
                     ResponseStatusCode = (int)HttpStatusCode.OK,

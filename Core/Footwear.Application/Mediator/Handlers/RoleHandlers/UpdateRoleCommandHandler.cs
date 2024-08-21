@@ -44,7 +44,7 @@ namespace Footwear.Application.Mediator.Handlers.RoleHandlers
                 return response;
             }
 
-            var value = await _roleRepository.GetSingleByIdAsync(request.RoleId);
+            var value = await _roleRepository.GetSingleByIdAsync(request.Id);
             if(value is null)
             {
                 return new Response<object>

@@ -10,7 +10,7 @@ namespace Footwear.Application.Mediator.Commands.RoleCommands
 {
     public class UpdateRoleCommand : IRequest<Response<object>>
     {
-        public int  RoleId { get; set; }
+        public int  Id { get; set; }
         public string RoleName { get; set; }
     }
 }

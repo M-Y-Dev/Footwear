@@ -33,20 +33,20 @@ namespace Footwear.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateUser(CreateUserCommand command)
         {
-            await _mediator.Send(command);
-            return Ok();
+            var values = await _mediator.Send(command);
+            return Ok(values);
         }
         [HttpPut]
         public async Task<IActionResult> UpdateUser(UpdateUserCommand command)
         {
-            await _mediator.Send(command);
-            return Ok();
+            var values = await _mediator.Send(command);
+            return Ok(values);
         }
         [HttpDelete]
         public async Task<IActionResult> DeleteUser(int id)
         {
             var values = await _mediator.Send(new DeleteUserCommand(id));
-            return Ok();
+            return Ok(values);
 
         }
     }

@@ -7,7 +7,7 @@ namespace Footwear.Application.Validator.RoleValidator
     {
         public DeleteRoleCommandValidator()
         {
-            RuleFor(x => x.RoleId).GreaterThan(0).NotEmpty().WithMessage("Id boş bırakılamaz.");
+            RuleFor(x => x.Id).GreaterThan(0).NotEmpty().WithMessage("Id boş bırakılamaz.");
         }
     }
 }

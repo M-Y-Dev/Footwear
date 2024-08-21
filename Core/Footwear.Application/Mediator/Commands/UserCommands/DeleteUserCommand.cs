@@ -10,11 +10,11 @@ namespace Footwear.Application.Mediator.Commands.UserCommands
 {
     public class DeleteUserCommand : IRequest<Response<object>>
     {
-        public int UserId { get; set; }
+        public int Id { get; set; }
 
-        public DeleteUserCommand(int userId)
+        public DeleteUserCommand(int ıd)
         {
-            UserId = userId;
+            Id = ıd;
         }
     }
 }

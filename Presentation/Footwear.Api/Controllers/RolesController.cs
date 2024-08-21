@@ -32,20 +32,20 @@ namespace Footwear.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateRole(CreateRoleCommand command)
         {
-            await _mediator.Send(command);
-            return Ok();
+            var values = await _mediator.Send(command);
+            return Ok(values);
         }
         [HttpPut]
         public async Task<IActionResult> UpdateRole(UpdateRoleCommand command)
         {
-            await _mediator.Send(command);
-            return Ok();
+            var values = await _mediator.Send(command);
+            return Ok(values);
         }
         [HttpDelete]
         public async Task<IActionResult> DeleteRole(int id)
         {
-            await _mediator.Send(new DeleteRoleCommand(id));
-            return Ok();
+            var values = await _mediator.Send(new DeleteRoleCommand(id));
+            return Ok(values);
         }
     }
 }

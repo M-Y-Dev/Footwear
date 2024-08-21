@@ -11,11 +11,11 @@ namespace Footwear.Application.Mediator.Queries.UserQueries
 {
     public class GetUserByIdQuery : IRequest<Response<GetUserByIdQueryResult>>
     {
-        public int UserId { get; set; }
+        public int Id { get; set; }
 
-        public GetUserByIdQuery(int userId)
+        public GetUserByIdQuery(int ıd)
         {
-            UserId = userId;
+            Id = ıd;
         }
     }
 }

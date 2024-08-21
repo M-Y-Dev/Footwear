@@ -9,7 +9,7 @@ namespace Footwear.Application.Mediator.Results.RoleResults
 {
     public class GetRoleByIdQueryResult
     {
-        public int RoleId { get; set; }
+        public int Id { get; set; }
         public string RoleName { get; set; }
     }
 }

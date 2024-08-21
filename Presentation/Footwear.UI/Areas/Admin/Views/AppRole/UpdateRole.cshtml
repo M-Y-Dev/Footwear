@@ -1,0 +1,35 @@
+﻿@model GetByIdRoleDto
+@{
+    ViewData["Title"] = "UpdateRole";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col">
+        <div class="card shadow p-3">
+            <div class="card-header border-0">
+                <h3 class="mb-0">Rol Yetki Başlıkları Güncelle</h3>
+            </div>
+            <form method="post">
+                <input type="hidden" asp-for="@Model.Id" />
+                <div class="form-group">
+                    <label class="form-label">Rol Başlığı</label>
+                    <input type="text" class="form-control" asp-for="@Model.RoleName" placeholder="Rol" />
+                </div>
+           
+                @if (ViewBag.Errors != null && ViewBag.Errors.Count > 0)
+                {
+                    <div class="alert alert-danger">
+                        @foreach (var item in ViewBag.Errors)
+                        {
+                            <p>@item</p>
+
+                        }
+                    </div>
+                }
+                <button type="submit" class="btn btn-outline-primary">Kaydet</button>
+            </form>
+
+        </div>
+    </div>
+</div>
