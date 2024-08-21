@@ -7,7 +7,6 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddHttpClient();
 
 builder.Services.AddControllersWithViews();
-
 builder.Services.Configure<ApiBaseUrl>(builder.Configuration.GetSection("ApiSettingBaseUrl"));
 
 var app = builder.Build();

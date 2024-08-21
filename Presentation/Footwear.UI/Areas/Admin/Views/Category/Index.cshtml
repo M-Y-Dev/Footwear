@@ -1,0 +1,66 @@
+﻿@model List<ResultCategoryDto>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col">
+        <div class="card shadow">
+            <div class="card-header border-0">
+                <h3 class="mb-0">Kategori Listesi</h3>
+            </div>
+            <div class="table-responsive">
+                <table class="table align-items-center table-flush">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Kategori Adı</th>
+                            <th scope="col">Sil</th>
+                            <th scope="col">Güncelle</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.Count() > 0)
+                        {
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <th scope="row">
+                                        <div class="media align-items-center">
+                                            <div class="media-body">
+                                                <span class="mb-0 text-sm">@item.Id</span>
+                                            </div>
+                                        </div>
+                                    </th>
+                                    <td>
+                                        @item.CategoryName
+                                    </td>
+                                    <td>
+                                        <a href="/Admin/Category/DeleteCategory/@item.Id" class="btn btn-outline-danger">Sil</a>
+                                    </td>
+                                    <td>
+                                        <a href="/Admin/Category/UpdateCategory/@item.Id" class="btn btn-outline-warning">Güncelle</a>
+                                    </td>
+
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            if (ViewBag.Message != null)
+                            {
+                                <h3 class="alert alert-warning">@* @ViewBag.Message *@</h3>
+                            }
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="card-footer py-4">
+                <a href="/Admin/Category/CreateCategory" class="btn btn-outline-primary">Yeni Kategori Girişi</a>
+            </div>
+        </div>
+    </div>
+</div>
+
