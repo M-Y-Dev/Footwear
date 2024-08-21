@@ -62,9 +62,10 @@ public class MapProfile : Profile
         CreateMap<AppUser, CreateUserCommand>().ReverseMap();
         CreateMap<AppUser, UpdateUserCommand>().ReverseMap();
         CreateMap<AppUser, GetUserByIdQueryResult>().ReverseMap();
-        CreateMap<AppUser, GetUserQueryResult>()
-            .AfterMap((source, destination) => destination.Id = source.Id)
+        CreateMap<AppUser, GetAppUserListWithRoleQueryResult>().AfterMap((source, destination) => destination.RoleName= source.AppRole.RoleName).ReverseMap();
+        CreateMap<AppUser, GetUserQueryResult>().AfterMap((source, destination) => destination.Id = source.Id)
             .ReverseMap();
+
 
         CreateMap<Category, CreateCategoryCommand>().ReverseMap();
         CreateMap<Category, UpdateCategoryCommand>().ReverseMap();

@@ -15,12 +15,12 @@ using System.Threading.Tasks;
 
 namespace Footwear.Application.Mediator.Handlers.RoleHandlers
 {
-    public class GetRoleQueryResultHandler : IRequestHandler<GetRoleQuery, Response<List<GetRoleQueryResult>>>
+    public class GetRoleQueryHandler : IRequestHandler<GetRoleQuery, Response<List<GetRoleQueryResult>>>
     {
         private readonly IRepository<AppRole> _roleRepository;
         private readonly IMapper _mapper;
 
-        public GetRoleQueryResultHandler(IRepository<AppRole> roleRepository, IMapper mapper)
+        public GetRoleQueryHandler(IRepository<AppRole> roleRepository, IMapper mapper)
         {
             _roleRepository = roleRepository;
             _mapper = mapper;

@@ -49,5 +49,12 @@ namespace Footwear.Api.Controllers
             return Ok(values);
 
         }
+
+        [HttpGet("GetUserWithRole")]
+        public async Task<IActionResult> GetUserWithRole()
+        {
+            var values = await _mediator.Send(new GetAppUserListWithRoleQuery());
+            return Ok(values);
+        }
     }
 }

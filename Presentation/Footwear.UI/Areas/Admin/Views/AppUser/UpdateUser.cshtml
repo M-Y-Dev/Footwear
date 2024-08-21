@@ -1,0 +1,56 @@
+﻿@model GetByIdUserDto
+@{
+    ViewData["Title"] = "UpdateUser";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col">
+        <div class="card shadow">
+            <div class="card-header border-0">
+                <h3 class="mb-0">Ürün Güncelleme Sayfası</h3>
+            </div>
+            <div class="table-responsive">
+                <table class="table align-items-center table-flush">
+                    <thead class="thead-light">
+                    <tbody>
+                        <form method="post">
+                            <div class="container">
+                                <br /><br />
+                                <input type="hidden" asp-for="Id" />
+                                <label>Kullanıcı Adı</label>
+                                <input type="text" asp-for="FirstName" class="form-control" />
+                                <br />
+                                <label>Kullanıcı Soyadı</label>
+                                <input type="text" asp-for="LastName" class="form-control" />
+                                <br />
+                                <label>Kullanıcı Takma Ad</label>
+                                <input type="text" asp-for="UserName" class="form-control" />
+                                <br />
+                                <label>E-Posta</label>
+                                <input type="text" asp-for="Email" class="form-control" />
+                                <br />
+                                <label>Telefon</label>
+                                <input  asp-for="PhoneNumber" class="form-control" />
+                                <br />
+                                <label>Profil Fotogafı</label>
+                                <input type="text" asp-for="ImageUrl" class="form-control" />
+                                <br />
+                                <label>Ürün Kategori</label>
+                                    @Html.DropDownListFor(x => x.RoleId, (SelectList)ViewBag.RoleList, "Rol Seçiniz", new { @class = "form-control" })
+                                <br />
+                                <label>Şifre</label>
+                              <input type="password" asp-for="Password" class="form-control"/>
+                                <br />
+                                   
+                                <button type="submit" class="btn btn-primary">Kullanıcı Güncelle</button>
+                                <a href="/Admin/AppUser/UserList" class="btn btn-default">İptal</a>
+                                <br /><br />
+                        </form>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+

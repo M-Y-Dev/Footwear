@@ -15,12 +15,12 @@ using System.Threading.Tasks;
 
 namespace Footwear.Application.Mediator.Handlers.UserHandlers
 {
-    public class GetUserQueryResultHandler : IRequestHandler<GetUserQuery, Response<List<GetUserQueryResult>>>
+    public class GetUserQueryHandler : IRequestHandler<GetUserQuery, Response<List<GetUserQueryResult>>>
     {
         private readonly IRepository<AppUser> _userRepository;
         private readonly IMapper _mapper;
 
-        public GetUserQueryResultHandler(IRepository<AppUser> userRepository, IMapper mapper)
+        public GetUserQueryHandler(IRepository<AppUser> userRepository, IMapper mapper)
         {
             _userRepository = userRepository;
             _mapper = mapper;

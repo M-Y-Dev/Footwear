@@ -1,8 +1,6 @@
-﻿using Footwear.Domain.Entities;
-
-namespace Footwear.UI.Areas.Admin.Dtos.AppUserDtos
+﻿namespace Footwear.UI.Areas.Admin.Dtos.UserDtos
 {
-    public class ResultUserDto
+    public class GetByIdUserDto
     {
         public int Id { get; set; }
         public string FirstName { get; set; }
@@ -11,7 +9,7 @@ namespace Footwear.UI.Areas.Admin.Dtos.AppUserDtos
         public string UserName { get; set; }
         public string PhoneNumber { get; set; }
         public string ImageUrl { get; set; }
-        public string Password { get; set; }
         public int RoleId { get; set; }
+        public string Password { get; set; }
     }
 }
