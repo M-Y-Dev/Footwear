@@ -10,7 +10,7 @@ namespace Footwear.Application.Mediator.Commands.BasketItemCommands
 {
     public class CreateBasketItemCommand : IRequest<Response<object>>
     {
-        public string ProductId { get; set; }
+        public int ProductId { get; set; }
         public string ProductName { get; set; }
         public int Quantity { get; set; }
         public decimal UnitPrice { get; set; }

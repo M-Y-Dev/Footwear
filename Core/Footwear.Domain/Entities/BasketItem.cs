@@ -9,7 +9,7 @@ namespace Footwear.Domain.Entities
 {
     public class BasketItem:BaseEntity
     {
-        public string ProductId { get; set; }
+        public int ProductId { get; set; }
         public string ProductName { get; set; }
         public int Quantity { get; set; }
         public decimal UnitPrice { get; set; }
