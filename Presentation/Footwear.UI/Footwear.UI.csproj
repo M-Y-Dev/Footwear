@@ -948,4 +948,8 @@
     <ProjectReference Include="..\..\Core\Footwear.Domain\Footwear.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Areas\Admin\Views\Banner\" />
+  </ItemGroup>
+
 </Project>
